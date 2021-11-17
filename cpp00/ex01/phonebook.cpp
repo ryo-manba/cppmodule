@@ -1,11 +1,17 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
 #include "phonebook.hpp"
 
-int main()
+void Phonebook::add_contact()
 {
-    std::cin >> num;
-
-    if (std::cin.eof())
+    for (int i = 0; i < DATASIZE; i++)
     {
-        std::exit(1);
+		std::cout << "Please enter the information:" << std::endl;
     }
+}
+
+void Phonebook::search_contact()
+{
+
 }
