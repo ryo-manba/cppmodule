@@ -14,21 +14,18 @@ int main()
 
         std::cout << ">";
         std::cin >> command;
-        if (std::cin.eof()) // Ctrl-D
-        {
-            std::cout << "Ctrl-D" << std::endl;
-            std::exit(1);
-        }
+
         if (command == "ADD")
         {
-            phonebook.add_contact();
+            phonebook.AddContact();
         }
         if (command == "SEARCH")
         {
-            phonebook.search_contact();
+            phonebook.SearchContact();
         }
-        if (command == "EXIT")
+        if (command == "EXIT" || std::cin.eof())
         {
+            std::cout << "Bye." << std::endl;
             std::exit(0);
         }
         else

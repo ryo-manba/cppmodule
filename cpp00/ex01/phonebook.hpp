@@ -1,35 +1,27 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
+#include "contact.hpp"
+
 #include <iostream>
 #include <iomanip>
 #include <string>
 
+#define MAX_SIZE 8
 class Phonebook
 {
-    private:
-        const int MAX = 8;
-        std::string _first_name;
-        std::string _last_name;
-        std::string _nickname;
-        std::string _phone;
-        std::string _number;
-        std::string _darkest_secret;
-
     public:
-        void    set_first_name();
-        void    set_last_name();
-        void    set_nickname();
-        void    set_phone();
-        void    set_number();
-        void    set_darkest_secret();
+        Phonebook();
+        ~Phonebook();
 
-        void    get_first_name();
-        void    get_last_name();
-        void    get_nickname();
-        void    get_phone();
-        void    get_number();
-        void    get_darkest_secret();
+        void AddContact();
+        void SearchContact();
+        void ExitPhonebook();
+
+    private:
+        Contact contact_[MAX_SIZE];
+        int idx;
+
 
 };
 
