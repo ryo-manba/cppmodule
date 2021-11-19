@@ -1,13 +1,13 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-#include "contact.hpp"
-
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <string>
 
-#define MAX_SIZE 8
+#include "contact.hpp"
+
+#define MAX_USER_ID 8
 class Phonebook
 {
     public:
@@ -16,13 +16,10 @@ class Phonebook
 
         void AddContact();
         void SearchContact();
-        void ExitPhonebook();
-
     private:
-        Contact contact_[MAX_SIZE];
-        int idx;
-
-
+        Contact contact_data_[MAX_USER_ID];
+        int id_;
+        int cnt_;
 };
 
 #endif

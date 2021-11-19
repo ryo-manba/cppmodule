@@ -1,38 +1,29 @@
 #include <iostream>
-#include <iomanip>
 #include <string>
 #include "phonebook.hpp"
 
-
-int main()
+int main(void)
 {
     Phonebook phonebook;
-    std::string command;
 
+    std::cout << "Usage: ADD / SEARCH / EXIT" << std::endl;
     while (true)
     {
-
-        std::cout << ">";
-        std::cin >> command;
-
-        if (command == "ADD")
+        std::cout << "phonebook> ";
+        std::string input;
+        if (!std::getline(std::cin, input) || input == "EXIT")
+        {
+            std::cout << "Bye." << std::endl;
+            break ;
+        }
+        if (input == "ADD")
         {
             phonebook.AddContact();
         }
-        if (command == "SEARCH")
+        else if (input == "SEARCH")
         {
             phonebook.SearchContact();
         }
-        if (command == "EXIT" || std::cin.eof())
-        {
-            std::cout << "Bye." << std::endl;
-            std::exit(0);
-        }
-        else
-        {
-            std::cout << "Invalid Arguments" << std::endl;
-            std::cout << "Usage: [ADD / SEARCH / EXIT]" << std::endl;
-        }
     }
-    return 0;
+    return (EXIT_SUCCESS);
 }

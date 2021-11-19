@@ -1,18 +1,11 @@
 #ifndef CONTACT_H
 #define CONTACT_H
 
+#include <iomanip>
 #include <iostream>
 #include <string>
 
-#define CONTACT_SIZE 8
-
-enum : int {
-    kFirstName,
-    kLastName,
-    kNickName,
-    kPhoneNumber,
-    kDarkestSecret
-};
+#define DATA_MAX_USER_ID 8
 
 class Contact
 {
@@ -20,29 +13,12 @@ class Contact
         Contact();
         ~Contact();
 
-        std::string GetFirstName();
-        std::string GetLastName();
-        std::string GetNickName();
-        std::string GetPhoneNumber();
-        std::string GetDarkestSecret();
-
-        void SetFirstName();
-        void SetLastName();
-        void SetNickName();
-        void SetPhoneNumber();
-        void SetDarkestSecret();
-
-        void SetContact(const int idx, const std::string info);
-        void SearchContact();
+        void SetContact(const int id, const std::string info);
+        void PrintList(const int id);
+        void PrintData();
 
     private:
-        std::string contact_data[5];
-        std::string first_name;
-        std::string last_name;
-        std::string nickname;
-        std::string phone_number;
-        std::string darkest_secret;
-
+        std::string info_[5];
 };
 
 #endif

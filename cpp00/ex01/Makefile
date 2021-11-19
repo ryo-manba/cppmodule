@@ -2,7 +2,7 @@ NAME    := phonebook
 CXX     := clang++
 CXXFLAGS:= -Wall -Wextra -Werror
 
-SRCS    := ./*.cpp
+SRCS    := contact.cpp main.cpp phonebook.cpp
 OBJS    := $(SRCS:.cpp=.o)
 
 .PHONY  : all
@@ -21,12 +21,6 @@ fclean: clean
 
 .PHONY: re
 re: fclean all
-
-.PHONY: test
-test: $(NAME)
-	./megaphone "shhhhh... I think the students are asleep..."
-	./megaphone Damnit " ! " "Sorry students, I thought this thing was off."
-	./megaphone
 
 .PHONY: debug
 debug: CXXFLAGS += -g -fsanitize=address
