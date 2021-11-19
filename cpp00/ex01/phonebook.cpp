@@ -7,7 +7,7 @@
 
 #define INFO_SIZE 5
 
-Phonebook::Phonebook() { id_ = 0, cnt_ = 0; }
+Phonebook::Phonebook() : id_(0), cnt_(0) {}
 
 Phonebook::~Phonebook() {}
 
