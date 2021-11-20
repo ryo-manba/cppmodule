@@ -40,7 +40,7 @@ int		main( void ) {
 	ints_t::iterator	wit_end		= withdrawals.end();
 
 	Account::displayAccountsInfos();
-    // mem_fun_refで acc のそれぞれの関数を使用する
+    // mem_fun_refで acc の要素ごとに関数を使用する
 	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
 
     // どちらかの要素がendになるまで進める
