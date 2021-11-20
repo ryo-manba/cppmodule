@@ -2,7 +2,6 @@
 
 #include <iomanip>
 #include <iostream>
-#include <string>
 #include <limits>
 
 #define INFO_SIZE 5
@@ -13,14 +12,8 @@ Phonebook::~Phonebook() {}
 
 void Phonebook::AddContact()
 {
-    std::string info_name[INFO_SIZE] =
-    {
-        "first name",
-        "last name",
-        "nick name",
-        "phone number",
-        "darkest secret"
-    };
+    std::string info_name[INFO_SIZE] = {"first name", "last name", "nickname",
+                                        "phone number", "darkest secret"};
 
     std::cout << "Please enter the information:" << std::endl;
 
@@ -37,7 +30,11 @@ void Phonebook::AddContact()
         }
         else
         {
-            contact_data_[id_].SetContact(i, input);
+            if (!contact_data_[id_].SetContact(i, input))
+            {
+                i -= 1;
+                continue ;
+            }
         }
     }
     std::cout << "id : " << id_ + 1 << " Registered in the Phonebook."

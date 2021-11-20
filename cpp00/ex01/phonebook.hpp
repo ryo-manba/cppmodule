@@ -1,10 +1,6 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-#include <iomanip>
-#include <iostream>
-#include <string>
-
 #include "contact.hpp"
 
 #define MAX_USER_ID 8

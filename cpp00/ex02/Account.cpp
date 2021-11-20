@@ -8,7 +8,7 @@ int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-Account::Account(int initial_deposit) : _nbDeposits(0), _nbWithdrawals(0)
+Account::Account( int initial_deposit ) : _nbDeposits(0), _nbWithdrawals(0)
 {
     _accountIndex = _nbAccounts;
     _nbAccounts += 1;
@@ -86,7 +86,7 @@ void Account::makeDeposit( int deposit )
     _totalNbDeposits += 1;
 }
 
-bool Account:: makeWithdrawal( int withdrawal ) // お金を引き出す
+bool Account:: makeWithdrawal( int withdrawal )
 {
     _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";"
@@ -121,7 +121,6 @@ void Account::displayStatus( void ) const
               << "withdrawals:" << _nbWithdrawals << std::endl;
 }
 
-// 額のチェック
 int Account::checkAmount( void ) const
 {
     return (_amount > 0);

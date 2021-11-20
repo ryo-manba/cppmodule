@@ -21,7 +21,7 @@ class Account {
 
 public:
 
-	typedef Account		t; // Account型 を t という型名にしている
+	typedef Account		t;
 
 	static int	getNbAccounts( void );
 	static int	getTotalAmount( void );
