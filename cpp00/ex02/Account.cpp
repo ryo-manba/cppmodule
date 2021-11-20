@@ -3,6 +3,10 @@
 #include <iomanip>
 #include <sstream>
 
+#ifndef ORIGIN
+# define ORIGIN 0
+#endif
+
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
@@ -58,8 +62,14 @@ void Account:: _displayTimestamp(void)
     s << std::setw(2) << std::setfill('0') << localTime->tm_hour;
     s << std::setw(2) << std::setfill('0') << localTime->tm_min;
     s << std::setw(2) << std::setfill('0') << localTime->tm_sec;
-//    std::cout << "[" << s.str() << "] ";
-    std::cout << "[19920104_091532] ";
+    if (ORIGIN)
+    {
+        std::cout << "[19920104_091532] ";
+    }
+    else
+    {
+        std::cout << "[" << s.str() << "] ";
+    }
 }
 
 void Account::displayAccountsInfos( void )

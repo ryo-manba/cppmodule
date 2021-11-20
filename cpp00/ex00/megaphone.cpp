@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+#define NOISE "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
+
 int main(int argc, char **argv)
 {
     std::string str;
@@ -8,7 +10,7 @@ int main(int argc, char **argv)
 
     if (argc == 1)
     {
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+        std::cout << NOISE << std::endl;
     }
     else
     {

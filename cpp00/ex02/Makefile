@@ -22,6 +22,10 @@ fclean: clean
 .PHONY: re
 re: fclean all
 
+.PHONY: origin
+origin: CXXFLAGS += -D ORIGIN=1
+origin: re
+
 .PHONY: debug
 debug: CXXFLAGS += -g -fsanitize=address
 debug: re
