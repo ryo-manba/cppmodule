@@ -22,9 +22,6 @@ fclean: clean
 .PHONY: re
 re: fclean all
 
-.PHONY: test
-test: $(NAME)
-
 .PHONY: debug
-debug: CXXFLAGS += -g -fsanitize=address
+debug: CXXFLAGS += -std=c++98 -pedantic -g -fsanitize=address
 debug: re
