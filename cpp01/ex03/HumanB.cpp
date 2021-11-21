@@ -3,16 +3,16 @@
 #include <iostream>
 #include <string>
 
-HumanB::HumanB(std::string const name) : _name(name), _weapon("weapon") {}
+HumanB::HumanB(std::string const name) : _name(name) {}
 
 HumanB::~HumanB() {}
 
-void HumanB::attack()
+void HumanB::attack() const
 {
-    std::cout << _name << " attacks with his " << _weapon.getType() << std::endl;
+    std::cout << _name << " attacks with his " << _p_weapon->getType() << std::endl;
 }
 
-void HumanB::setWeapon(Weapon weapon)
+void HumanB::setWeapon(Weapon &weapon)
 {
-    _weapon = weapon;
+    _p_weapon = &weapon;
 }
