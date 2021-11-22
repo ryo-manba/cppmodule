@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#define SCREAMS " BraiiiiiiinnnzzzZ..."
+std::string _scream = " BraiiiiiiinnnzzzZ...";
 
 Zombie::Zombie(std::string name) : _name(name) {}
 
@@ -15,5 +15,5 @@ Zombie::~Zombie( void )
 
 void Zombie::announce( void )
 {
-    std::cout << _name << SCREAMS << std::endl;
+    std::cout << _name << _scream << std::endl;
 }

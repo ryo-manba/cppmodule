@@ -8,7 +8,7 @@ Weapon::Weapon() : _type("lucille bat") {}
 
 Weapon::~Weapon() {}
 
-std::string Weapon::getType() const
+const std::string& Weapon::getType() const
 {
     return _type;
 }

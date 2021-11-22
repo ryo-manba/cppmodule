@@ -12,6 +12,7 @@ public:
 
 private:
     std::string _name;
+    static const std::string _scream;
 };
 
 Zombie* newZombie( std::string name );
