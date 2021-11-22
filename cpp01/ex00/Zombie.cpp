@@ -10,7 +10,7 @@ Zombie::Zombie( void ) : _name("Zombie") {}
 
 Zombie::~Zombie( void )
 {
-    std::cout << _name << " was destroyed" << std::endl;
+    std::cout << _name << " destructor called" << std::endl;
 }
 
 void Zombie::announce( void )

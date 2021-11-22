@@ -52,18 +52,17 @@ void Karen::complain(std::string level)
 
     switch (check)
     {
-        case 1:
+        case DEBUG:
             (this->*func[0])();
-        case 2:
+        case INFO:
             (this->*func[1])();
-        case 3:
+        case WARNING:
             (this->*func[2])();
-        case 4:
+        case ERROR:
             (this->*func[3])();
-            break;
+            break ;
         default:
             std::cout << "[ Probably complaining about insignificant problems ]\n"
                       << std::endl;
-            break;
     }
 }

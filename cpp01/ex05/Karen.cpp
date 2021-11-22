@@ -37,8 +37,8 @@ void Karen::error()
 
 void Karen::complain(std::string level)
 {
-    const std::string levels[4]  = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    void (Karen::*func[4])(void) = {&Karen::debug, &Karen::info,
+    const std::string levels[MAX]  = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    void (Karen::*func[MAX])(void) = {&Karen::debug, &Karen::info,
                                     &Karen::warning, &Karen::error};
 
     int check = (levels[0] == level) * 1 + (levels[1] == level) * 2 +
@@ -46,20 +46,19 @@ void Karen::complain(std::string level)
 
     switch (check)
     {
-        case 1:
+        case DEBUG:
             (this->*func[0])();
             break;
-        case 2:
+        case INFO:
             (this->*func[1])();
             break;
-        case 3:
+        case WARNING:
             (this->*func[2])();
             break;
-        case 4:
+        case ERROR:
             (this->*func[3])();
             break;
         default:
             std::cout << "ERROR: Invalid Arguments" << std::endl;
-            break;
     }
 }

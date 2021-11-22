@@ -35,6 +35,7 @@ test: $(NAME)
 	@./$(NAME) test.txt "helloworld" "xxxx"
 	@echo "[CASE3] test.txt  "helloworld" "xxxx"" >> diff.txt
 	@diff test.txt test.txt.replace >> diff.txt ; [ $$? -eq 1 ]
+	@cat diff.txt
 
 .PHONY: debug
 debug: CXXFLAGS += -std=c++98 -pedantic -g -fsanitize=address
