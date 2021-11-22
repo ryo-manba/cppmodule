@@ -1,8 +1,8 @@
-NAME    := a.out
+NAME    := karenFilter
 CXX     := c++
 CXXFLAGS:= -Wall -Wextra -Werror
 
-SRCS    := Zombie.cpp main.cpp newZombie.cpp randomChump.cpp
+SRCS    := Karen.cpp main.cpp
 OBJS    := $(SRCS:.cpp=.o)
 
 .PHONY  : all
@@ -24,7 +24,8 @@ re: fclean all
 
 .PHONY: test
 test: $(NAME)
-	./a.out
+	./$(NAME) "WARNING"
+	./$(NAME) "I am not sure how tired I am today..."
 
 .PHONY: debug
 debug: CXXFLAGS += -std=c++98 -pedantic -g -fsanitize=address
