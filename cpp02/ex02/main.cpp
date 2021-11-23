@@ -25,10 +25,12 @@ int main( void ) {
 
     Fixed a(10);
     Fixed b(2.5f);
+    Fixed c(0);
 
     cout << a + b << endl;
     cout << a - b << endl;
     cout << a * b << endl;
     cout << a / b << endl;
+
     return 0;
 }

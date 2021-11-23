@@ -118,10 +118,44 @@ const Fixed Fixed::operator*(const Fixed &rhs) const
 
 const Fixed Fixed::operator/(const Fixed &rhs) const
 {
+    if (rhs.fpv_ == 0)
+    {
+        std::cout << "Error : Divide by Zero" << std::endl;
+        std::exit(1);
+    }
+
     Fixed res;
     long tmp = this->fpv_;
 
     tmp = (tmp << this->point_) / rhs.fpv_;
     res.setRawBits(static_cast<int>(tmp));
     return res;
+}
+
+Fixed& Fixed::operator++()
+{
+    ++fpv_;
+    return *this;
+}
+
+Fixed& Fixed::operator--()
+{
+    --fpv_;
+    return *this;
+}
+
+const Fixed Fixed::operator++(int)
+{
+    const Fixed tmp(*this);
+
+    ++(*this);
+    return tmp;
+}
+
+const Fixed Fixed::operator--(int)
+{
+    const Fixed tmp(*this);
+
+    --(*this);
+    return tmp;
 }

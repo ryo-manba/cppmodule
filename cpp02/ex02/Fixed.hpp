@@ -30,6 +30,11 @@ public:
     const Fixed operator*(const Fixed &rhs) const;
     const Fixed operator/(const Fixed &rhs) const;
 
+    Fixed& operator++();
+    Fixed& operator--();
+    const Fixed operator++(int);
+    const Fixed operator--(int);
+
 private:
     int fpv_;
     static const int point_;
