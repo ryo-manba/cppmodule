@@ -159,3 +159,27 @@ const Fixed Fixed::operator--(int)
     --(*this);
     return tmp;
 }
+
+const Fixed& Fixed::min(const Fixed &lhs, const Fixed &rhs)
+{
+    if (lhs > rhs) return rhs;
+    else return lhs;
+}
+
+Fixed& Fixed::min(Fixed &lhs, Fixed &rhs)
+{
+    if (lhs > rhs) return rhs;
+    else return lhs;
+}
+
+const Fixed& Fixed::max(const Fixed &lhs, const Fixed &rhs)
+{
+    if (lhs > rhs) return lhs;
+    else return rhs;
+}
+
+Fixed& Fixed::max(Fixed &lhs, Fixed &rhs)
+{
+    if (lhs > rhs) return lhs;
+    else return rhs;
+}
