@@ -24,7 +24,11 @@ re: fclean all
 
 .PHONY: test
 test: $(NAME)
-	./a.out
+	./$(NAME)
+
+.PHONY: origin
+origin: CXXFLAGS += -D ORIGIN=1
+origin: re
 
 .PHONY: debug
 debug: CXXFLAGS += -std=c++98 -pedantic -g -fsanitize=address
