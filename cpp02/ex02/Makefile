@@ -2,7 +2,6 @@ NAME    := a.out
 CXX     := c++
 CXXFLAGS:= -Wall -Wextra -Werror
 SRCS    := Fixed.cpp main.cpp
-#SRCS    := Fixed.cpp test.cpp
 
 OBJS    := $(SRCS:.cpp=.o)
 
@@ -25,7 +24,11 @@ re: fclean all
 
 .PHONY: test
 test: $(NAME)
-	./a.out
+	./$(NAME)
+
+.PHONY: origin
+origin: CXXFLAGS += -D ORIGIN=1
+origin: re
 
 .PHONY: debug
 debug: CXXFLAGS += -std=c++98 -pedantic -g -fsanitize=address
