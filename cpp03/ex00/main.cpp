@@ -1,14 +1,15 @@
-#include "ClapTrap.hpp"
 #include <climits>
+#include <iostream>
+
+#include "ClapTrap.hpp"
 
 void getInfo(ClapTrap const &a)
 {
-    a.getName();
-    a.getHitPoints();
-    a.getEnergyPoints();
-    a.getAttackDamage();
+    std::cout << "Name: " << a.getName() << std::endl;
+    std::cout << "HP  : " << a.getHitPoints() << std::endl;
+    std::cout << "EP  : " << a.getEnergyPoints() << std::endl;
+    std::cout << "AD  : " << a.getAttackDamage() << std::endl;
 }
-
 int main()
 {
     ClapTrap c1("CLAP");
