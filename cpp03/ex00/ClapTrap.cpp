@@ -73,7 +73,7 @@ void ClapTrap::beRepaired(unsigned int amount)
               << ", so it has " << _hitPoints << " HP remaining." << std::endl;
 }
 
-std::string ClapTrap::getName() const { return _name; };
-int ClapTrap::getHitPoints()    const { return _hitPoints; };
-int ClapTrap::getEnergyPoints() const { return _energyPoints; };
-int ClapTrap::getAttackDamage() const { return _attackDamage; };
+const std::string& ClapTrap::getName()   const { return _name; };
+unsigned int ClapTrap::getHitPoints()    const { return _hitPoints; };
+unsigned int ClapTrap::getEnergyPoints() const { return _energyPoints; };
+unsigned int ClapTrap::getAttackDamage() const { return _attackDamage; };

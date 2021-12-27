@@ -10,14 +10,17 @@ public:
     ClapTrap(std::string const &name);
     ClapTrap(ClapTrap const &other);
     ~ClapTrap();
+
     ClapTrap &operator=(ClapTrap const &other);
+
     void attack(std::string const &target);
     void takeDamage(unsigned int amount);
     void beRepaired(unsigned int amount);
-    std::string getName() const;
-    int getHitPoints() const;
-    int getEnergyPoints() const;
-    int getAttackDamage() const;
+
+    const std::string &getName() const;
+    unsigned int getHitPoints() const;
+    unsigned int getEnergyPoints() const;
+    unsigned int getAttackDamage() const;
 
 private:
     const static unsigned int kDefaultHp;
