@@ -21,6 +21,7 @@ protected:
     const static unsigned int kDefaultEp;
     const static unsigned int kDefaultAd;
     const static std::string kDefaultName;
+
 private:
 };
 
