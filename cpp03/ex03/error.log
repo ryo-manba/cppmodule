@@ -1,0 +1,14 @@
+DiamondTrap.cpp:58:19: error: out-of-line definition of 'attack' does not match any declaration in 'DiamondTrap'
+void DiamondTrap::attack(std::string const &target)
+                  ^~~~~~
+DiamondTrap.cpp:63:32: error: return type of out-of-line definition of 'DiamondTrap::getClapName' differs from that in the declaration
+const std::string DiamondTrap::getClapName() const
+      ~~~~~~~~~~~              ^
+./DiamondTrap.hpp:19:24: note: previous declaration is here
+    const std::string &getClapName() const;
+          ~~~~~~~~~~~~~^
+DiamondTrap.cpp:65:28: error: no member named 'name' in 'ClapTrap'
+    return this->ClapTrap::name;
+           ~~~~            ^
+3 errors generated.
+make: *** [DiamondTrap.o] Error 1
