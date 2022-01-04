@@ -23,12 +23,17 @@ public:
     unsigned int getAttackDamage() const;
 
 protected:
+    void setName(const std::string &name);
+    void setHitPoints(const unsigned int &hp);
+    void setEnergyPoints(const unsigned int &ep);
+    void setAttackDamage(const unsigned int &ad);
+
+private:
     std::string _name;
     unsigned int _hitPoints;
     unsigned int _energyPoints;
     unsigned int _attackDamage;
 
-private:
     const static unsigned int kDefaultHp;
     const static unsigned int kDefaultEp;
     const static unsigned int kDefaultAd;

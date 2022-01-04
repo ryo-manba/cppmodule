@@ -10,19 +10,19 @@ const unsigned int ScavTrap::kDefaultAd  = 20;
 ScavTrap::ScavTrap()
 {
     std::cout << "ScavTrap default constructor called" << std::endl;
-    _name         = kDefaultName;
-    _hitPoints    = kDefaultHp;
-    _energyPoints = kDefaultEp;
-    _attackDamage = kDefaultAd;
+    this->ClapTrap::setHitPoints(kDefaultHp);
+    this->ClapTrap::setEnergyPoints(kDefaultEp);
+    this->ClapTrap::setAttackDamage(kDefaultAd);
+    this->ClapTrap::setName(kDefaultName);
 }
 
 ScavTrap::ScavTrap(std::string const &name)
 {
     std::cout << "ScavTrap " << name << " constructor called" << std::endl;
-    _name         = name;
-    _hitPoints    = kDefaultHp;
-    _energyPoints = kDefaultEp;
-    _attackDamage = kDefaultAd;
+    this->ClapTrap::setHitPoints(kDefaultHp);
+    this->ClapTrap::setEnergyPoints(kDefaultEp);
+    this->ClapTrap::setAttackDamage(kDefaultAd);
+    this->ClapTrap::setName(name);
 }
 
 ScavTrap::ScavTrap(const ScavTrap &other)
@@ -33,29 +33,29 @@ ScavTrap::ScavTrap(const ScavTrap &other)
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "ScavTrap " << _name << " destructor called" << std::endl;
+    std::cout << "ScavTrap " << this->ClapTrap::getName() << " destructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap const &other)
 {
     if (this != &other)
     {
-        _name         = other.getName();
-        _hitPoints    = other.getHitPoints();
-        _energyPoints = other.getEnergyPoints();
-        _attackDamage = other.getAttackDamage();
+        this->ClapTrap::setHitPoints(other.getHitPoints());
+        this->ClapTrap::setEnergyPoints(other.getEnergyPoints());
+        this->ClapTrap::setAttackDamage(other.getAttackDamage());
+        this->ClapTrap::setName(other.ClapTrap::getName());
     }
     return *this;
 }
 
 void ScavTrap::attack(std::string const &target)
 {
-    std::cout << "ScavTrap " << _name << " attack " << target << ", causing "
-              << _attackDamage << " points of damage!" << std::endl;
+    std::cout << "ScavTrap " << this->ClapTrap::getName() << " attack " << target << ", causing "
+              << this->ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
 }
 
 void ScavTrap::guardGate()
 {
-    std::cout << "ScavTrap " << _name << "have enterred in Gate keeper mode."
+    std::cout << "ScavTrap " << this->ClapTrap::getName() << "have enterred in Gate keeper mode."
               << std::endl;
 }
