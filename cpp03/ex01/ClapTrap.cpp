@@ -14,7 +14,7 @@ ClapTrap::ClapTrap()
       _energyPoints(kDefaultEp),
       _attackDamage(kDefaultAd)
 {
-    std::cout << "ClapTrap Default constructor called" << std::endl;
+    std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string const &name)
