@@ -14,6 +14,7 @@ public:
     FragTrap &operator=(FragTrap const &other);
 
     void highFivesGuys(void);
+    void attack(std::string const &target);
 
 private:
     const static unsigned int kDefaultHp;

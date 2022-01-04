@@ -13,7 +13,7 @@ void getInfo(DiamondTrap const &a)
 
 int main()
 {
-    DiamondTrap d1("Diamond");
+    DiamondTrap d1("DIAMOND");
     DiamondTrap d2;
     DiamondTrap d3(d1);
 

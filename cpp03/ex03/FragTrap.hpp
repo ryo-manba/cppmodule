@@ -9,19 +9,18 @@ public:
     FragTrap();
     FragTrap(std::string const &name);
     FragTrap(FragTrap const &other);
-    virtual ~FragTrap();
+    ~FragTrap();
 
     FragTrap &operator=(FragTrap const &other);
 
     void highFivesGuys(void);
+    void attack(std::string const &target);
 
 protected:
     const static unsigned int kDefaultHp;
     const static unsigned int kDefaultEp;
     const static unsigned int kDefaultAd;
     const static std::string kDefaultName;
-
-private:
 };
 
 #endif

@@ -8,21 +8,23 @@ const unsigned int DiamondTrap::kDefaultEp  = ScavTrap::kDefaultEp;
 const unsigned int DiamondTrap::kDefaultAd  = FragTrap::kDefaultAd;
 
 DiamondTrap::DiamondTrap()
-    : ClapTrap(kDefaultName + "_clap_name"), _name(kDefaultName)
+    : ClapTrap(), _name(kDefaultName)
 {
     std::cout << "DiamondTrap default constructor called" << std::endl;
     _hitPoints    = kDefaultHp;
     _energyPoints = kDefaultEp;
     _attackDamage = kDefaultAd;
+    this->ClapTrap::_name = kDefaultName + "_clap_name";
 }
 
 DiamondTrap::DiamondTrap(std::string const &name)
-    : ClapTrap(name + "_clap_name"), _name(name)
+    : ClapTrap(), _name(name)
 {
     std::cout << "DiamondTrap " << _name << " constructor called" << std::endl;
     _hitPoints    = kDefaultHp;
     _energyPoints = kDefaultEp;
     _attackDamage = kDefaultAd;
+    this->ClapTrap::_name = name + "_clap_name";
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap &other)
@@ -52,7 +54,7 @@ DiamondTrap &DiamondTrap::operator=(DiamondTrap const &other)
 void DiamondTrap::whoAmI()
 {
     std::cout << "DiamondTrap My name is " << _name << ", my ClapTrap name is "
-              << ClapTrap::_name << std::endl;
+              << this->ClapTrap::_name << "." << std::endl;
 }
 
 void DiamondTrap::attack(std::string const &target)

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-const std::string ScavTrap::kDefaultName = "NONAME";
+const std::string ScavTrap::kDefaultName = "SCAV_NONAME";
 const unsigned int ScavTrap::kDefaultHp  = 100;
 const unsigned int ScavTrap::kDefaultEp  = 50;
 const unsigned int ScavTrap::kDefaultAd  = 20;
