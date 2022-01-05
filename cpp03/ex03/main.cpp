@@ -5,10 +5,11 @@
 
 void getInfo(DiamondTrap const &a)
 {
-    std::cout << "Name: " << a.getName() << std::endl;
-    std::cout << "HP  : " << a.getHitPoints() << std::endl;
-    std::cout << "EP  : " << a.getEnergyPoints() << std::endl;
-    std::cout << "AD  : " << a.getAttackDamage() << std::endl;
+    std::cout << "Name      : " << a.getName() << std::endl;
+    std::cout << "Clap Name : " << a.getClapName() << std::endl;
+    std::cout << "HP        : " << a.getHitPoints() << std::endl;
+    std::cout << "EP        : " << a.getEnergyPoints() << std::endl;
+    std::cout << "AD        : " << a.getAttackDamage() << std::endl;
 }
 
 int main()
@@ -21,7 +22,7 @@ int main()
     getInfo(d2);
     getInfo(d3);
     d3 = d2;
-    d3.getName();
+    std::cout << "d3 = d2 -> d3 is " << d3.getName() << std::endl;
     d1.attack("ENEMY");
 
     d1.takeDamage(0);

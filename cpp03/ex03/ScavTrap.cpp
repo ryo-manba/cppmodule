@@ -33,7 +33,8 @@ ScavTrap::ScavTrap(const ScavTrap &other)
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "ScavTrap " << this->ClapTrap::getName() << " destructor called" << std::endl;
+    std::cout << "ScavTrap " << this->ClapTrap::getName()
+              << " destructor called" << std::endl;
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap const &other)
@@ -50,12 +51,13 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &other)
 
 void ScavTrap::attack(std::string const &target)
 {
-    std::cout << "ScavTrap " << this->ClapTrap::getName() << " attack " << target << ", causing "
-              << this->ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
+    std::cout << "ScavTrap " << this->ClapTrap::getName() << " attack "
+              << target << ", causing " << this->ClapTrap::getAttackDamage()
+              << " points of damage!" << std::endl;
 }
 
 void ScavTrap::guardGate()
 {
-    std::cout << "ScavTrap " << this->ClapTrap::getName() << "have enterred in Gate keeper mode."
-              << std::endl;
+    std::cout << "ScavTrap " << this->ClapTrap::getName()
+              << "have enterred in Gate keeper mode." << std::endl;
 }

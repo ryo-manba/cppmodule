@@ -18,6 +18,7 @@ public:
     void attack(std::string const &target);
 
     const std::string &getClapName() const;
+    const std::string &getName() const;
 
 private:
     const static unsigned int kDefaultHp;

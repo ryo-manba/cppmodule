@@ -33,7 +33,8 @@ FragTrap::FragTrap(FragTrap const &other)
 
 FragTrap::~FragTrap()
 {
-    std::cout << "FragTrap " << this->ClapTrap::getName() << " destructor called" << std::endl;
+    std::cout << "FragTrap " << this->ClapTrap::getName()
+              << " destructor called" << std::endl;
 }
 
 FragTrap &FragTrap::operator=(FragTrap const &other)
@@ -50,11 +51,13 @@ FragTrap &FragTrap::operator=(FragTrap const &other)
 
 void FragTrap::highFivesGuys()
 {
-    std::cout << "FragTrap Good job! High five " << this->ClapTrap::getName() << "!" << std::endl;
+    std::cout << "FragTrap Good job! High five " << this->ClapTrap::getName()
+              << "!" << std::endl;
 }
 
 void FragTrap::attack(std::string const &target)
 {
-    std::cout << "FragTrap " << this->ClapTrap::getName() << " attack " << target << ", causing "
-              << this->ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
+    std::cout << "FragTrap " << this->ClapTrap::getName() << " attack "
+              << target << ", causing " << this->ClapTrap::getAttackDamage()
+              << " points of damage!" << std::endl;
 }

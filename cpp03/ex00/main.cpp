@@ -20,7 +20,7 @@ int main()
     getInfo(c2);
     getInfo(c3);
     c3 = c2;
-    c3.getName();
+    std::cout << "c3 = c2 -> c3 is " << c3.getName() << std::endl;
     c1.attack("ENEMY");
     c1.takeDamage(0);
     c1.takeDamage(1);

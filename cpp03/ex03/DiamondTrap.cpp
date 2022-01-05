@@ -61,3 +61,14 @@ void DiamondTrap::attack(std::string const &target)
 {
     this->ScavTrap::attack(target);
 }
+
+const std::string &DiamondTrap::getClapName() const
+{
+
+    
+    return this->ClapTrap::getName();
+}
+const std::string &DiamondTrap::getName() const
+{
+    return this->_name;
+}

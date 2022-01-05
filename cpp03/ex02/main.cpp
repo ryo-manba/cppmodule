@@ -21,7 +21,7 @@ int main()
     getInfo(f2);
     getInfo(f3);
     f3 = f2;
-    f3.getName();
+    std::cout << "f3 = f2 -> f3 is " << f3.getName() << std::endl;
     f1.attack("ENEMY");
 
     f1.takeDamage(0);

@@ -85,4 +85,3 @@ void ClapTrap::setName(const std::string &name) { _name = name; }
 void ClapTrap::setHitPoints(const unsigned int &hp) { _hitPoints = hp; }
 void ClapTrap::setEnergyPoints(const unsigned int &ep) { _energyPoints = ep; }
 void ClapTrap::setAttackDamage(const unsigned int &ad) { _attackDamage = ad; }
-

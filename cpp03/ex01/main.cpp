@@ -22,7 +22,7 @@ int main()
     getInfo(s2);
     getInfo(s3);
     s3 = s2;
-    s3.getName();
+    std::cout << "s3 = s2 -> s3 is " << s3.getName() << std::endl;
     s1.attack("ENEMY");
     s1.takeDamage(0);
     s1.takeDamage(1);
