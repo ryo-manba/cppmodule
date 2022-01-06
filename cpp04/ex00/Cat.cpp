@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-const std::string Cat::kDefaultType = "Cat";
+const std::string Cat::kDefaultType  = "Cat";
 const std::string Cat::kDefaultBarks = "meaw! meaw!";
 
 Cat::Cat() : Animal(kDefaultType)
@@ -17,7 +17,8 @@ Cat::Cat(std::string const &type) : Animal(type)
 
 Cat::~Cat()
 {
-    std::cout << "Cat " << this->Animal::getType() << " destructor called" << std::endl;
+    std::cout << "Cat " << this->Animal::getType() << " destructor called"
+              << std::endl;
 }
 
 Cat &Cat::operator=(Cat const &other)
@@ -29,7 +30,4 @@ Cat &Cat::operator=(Cat const &other)
     return *this;
 }
 
-void Cat::makeSound() const
-{
-    std::cout << kDefaultBarks << std::endl;
-}
+void Cat::makeSound() const { std::cout << kDefaultBarks << std::endl; }
