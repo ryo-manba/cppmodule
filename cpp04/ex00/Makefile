@@ -1,8 +1,8 @@
 NAME    := a.out
-CXX     := c++
+CXX     := clang++
 CXXFLAGS:= -Wall -Wextra -Werror -std=c++98 -pedantic
 
-SRCS    := main.cpp
+SRCS    := Animal.cpp Cat.cpp Dog.cpp main.cpp
 OBJS    := $(SRCS:.cpp=.o)
 
 all     : $(NAME)
