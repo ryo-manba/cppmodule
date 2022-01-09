@@ -2,7 +2,7 @@ NAME    := a.out
 CXX     := c++
 CXXFLAGS:= -Wall -Wextra -Werror -std=c++98 -pedantic
 
-SRCS    := AMateria.cpp Character.cpp Cure.cpp ICharacter.cpp Ice.cpp MateriaSource.cpp main.cpp
+SRCS    := AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp main.cpp
 OBJS    := $(SRCS:.cpp=.o)
 
 all     : $(NAME)

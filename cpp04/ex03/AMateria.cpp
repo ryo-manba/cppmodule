@@ -2,14 +2,14 @@
 
 #include <iostream>
 
-const std::string kDefaultType = "NOTYPE";
+const std::string AMateria::kDefaultType = "NOTYPE";
 
 AMateria::AMateria() : type_(kDefaultType)
 {
     std::cout << "AMateria default constructor called" << std::endl;
 }
 
-AMateria::AMateria(std::string const &type) : type_(type)
+AMateria::AMateria(std::string const & type) : type_(type)
 {
     std::cout << "AMateria " << type << " constructor called" << std::endl;
 }
@@ -41,5 +41,5 @@ std::string const &AMateria::getType() const
 
 void AMateria::use(ICharacter& target)
 {
-    std::cout << target.getType() << " not using." << std::endl;
+    std::cout << "AMateria use" << target.getName() << std::endl;
 }
