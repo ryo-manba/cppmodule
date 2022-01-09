@@ -3,12 +3,11 @@
 
 #include "ICharacter.hpp"
 
-
 class Character : public ICharacter
 {
 public:
     Character();
-    Character(const std::string & name);
+    Character(const std::string &name);
     Character(const Character &other);
     ~Character();
     Character &operator=(const Character &other);
@@ -18,7 +17,7 @@ public:
 
     virtual void equip(AMateria *m);
     virtual void unequip(int idx);
-    virtual void use(int idx, ICharacter& target);
+    virtual void use(int idx, ICharacter &target);
 
 private:
     static const std::string kDefaultName;
@@ -27,6 +26,5 @@ private:
     AMateria *materia_[kMaxMateria];
     std::string name_;
 };
-
 
 #endif

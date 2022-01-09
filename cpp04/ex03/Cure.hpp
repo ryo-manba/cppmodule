@@ -1,4 +1,5 @@
 #include <string>
+
 #include "AMateria.hpp"
 
 class Cure : public AMateria
@@ -12,6 +13,7 @@ public:
 
     AMateria *clone() const;
     void use(ICharacter &target);
+
 private:
     const static std::string kDefaultType;
 };

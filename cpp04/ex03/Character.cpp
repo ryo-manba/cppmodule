@@ -44,15 +44,22 @@ Character &Character::operator=(const Character &other)
 {
     if (this != &other)
     {
-        
+        for (size_t i = 0; i < kMaxMateria; i++)
+        {
+            delete materia_[i];
+        }
+        for (size_t i = 0; i < kMaxMateria; i++)
+        {
+            if (other.materia_[i])
+                materia_[i] = other.materia_[i]->clone();
+            else
+                materia_[i] = NULL;
+        }
     }
     return *this;
 }
 
-std::string const &Character::getName() const
-{
-    return name_;
-}
+std::string const &Character::getName() const { return name_; }
 
 void Character::equip(AMateria *m)
 {
@@ -61,7 +68,7 @@ void Character::equip(AMateria *m)
         if (materia_[i] == NULL)
         {
             materia_[i] = m;
-            return ;
+            return;
         }
     }
 }
@@ -81,12 +88,10 @@ const AMateria* Character::getMateria(int idx) const
 
 void Character::unequip(int idx)
 {
-    if (isValidIndex(idx) && !materia_[idx])
-        materia_[idx] = NULL;
+    if (isValidIndex(idx) && !materia_[idx]) materia_[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter &target)
 {
-    if (isValidIndex(idx) && !materia_[idx])
-        materia_[idx]->use(target);
+    if (isValidIndex(idx) && !materia_[idx]) materia_[idx]->use(target);
 }

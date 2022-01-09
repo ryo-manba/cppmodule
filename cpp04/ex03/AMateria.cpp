@@ -9,7 +9,7 @@ AMateria::AMateria() : type_(kDefaultType)
     std::cout << "AMateria default constructor called" << std::endl;
 }
 
-AMateria::AMateria(std::string const & type) : type_(type)
+AMateria::AMateria(std::string const &type) : type_(type)
 {
     std::cout << "AMateria " << type << " constructor called" << std::endl;
 }
@@ -34,12 +34,9 @@ AMateria &AMateria::operator=(const AMateria &other)
     return *this;
 }
 
-std::string const &AMateria::getType() const
-{
-    return type_;
-}
+std::string const &AMateria::getType() const { return type_; }
 
-void AMateria::use(ICharacter& target)
+void AMateria::use(ICharacter &target)
 {
     std::cout << "AMateria use" << target.getName() << std::endl;
 }
