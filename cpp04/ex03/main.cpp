@@ -23,7 +23,6 @@ void test()
     me->use(1, *bob);
 
     std::cout << "-----myTest-----" << std::endl;
-
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
 
@@ -49,17 +48,17 @@ void test()
     tmp2 = src->createMateria("ice");
     me->equip(tmp2);
 
-    std::cout << "unequip(3)" << std::endl;
+    std::cout << "me->unequip(3)" << std::endl;
     me->unequip(3);
     delete tmp;
 
-    std::cout << "use(2, *bob)" << std::endl;
+    std::cout << "me->use(2, *bob)" << std::endl;
     me->use(2, *bob);
-    std::cout << "use(3, *bob)" << std::endl;
+    std::cout << "me->use(3, *bob)" << std::endl;
     me->use(3, *bob);
-    std::cout << "use(-1, *bob)" << std::endl;
+    std::cout << "me->use(-1, *bob)" << std::endl;
     me->use(-1, *bob);
-    std::cout << "use(UINT_MAX, *bob)" << std::endl;
+    std::cout << "me->use(UINT_MAX, *bob)" << std::endl;
     me->use(UINT_MAX, *bob);
 
     delete bob;
@@ -72,6 +71,5 @@ void test()
 int main()
 {
     test();
-//    system("leaks a.out");
     return 0;
 }
