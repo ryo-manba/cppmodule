@@ -4,26 +4,13 @@
 
 const std::string Cure::kDefaultType = "cure";
 
-Cure::Cure() : AMateria(kDefaultType)
-{
-    std::cout << "Cure default constructor called" << std::endl;
-}
+Cure::Cure() : AMateria(kDefaultType) {}
 
-Cure::Cure(const std::string &type) : AMateria(type)
-{
-    std::cout << "Cure " << type << " constructor called" << std::endl;
-}
+Cure::Cure(const std::string &type) : AMateria(type) {}
 
-Cure::Cure(const Cure &other)
-{
-    std::cout << "Cure copy constructor called" << std::endl;
-    *this = other;
-}
+Cure::Cure(const Cure &other) { *this = other; }
 
-Cure::~Cure()
-{
-    std::cout << "Cure " << type_ << " destructor called" << std::endl;
-}
+Cure::~Cure() {}
 
 Cure &Cure::operator=(const Cure &other)
 {

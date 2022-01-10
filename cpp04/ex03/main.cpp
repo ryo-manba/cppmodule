@@ -1,11 +1,11 @@
+#include <climits>
 #include <iostream>
 
 #include "AMateria.hpp"
 #include "Character.hpp"
-#include "MateriaSource.hpp"
-#include "Ice.hpp"
 #include "Cure.hpp"
-#include <climits>
+#include "Ice.hpp"
+#include "MateriaSource.hpp"
 
 void test()
 {
@@ -28,14 +28,15 @@ void test()
     src->learnMateria(new Cure());
 
     // learnMateria more than the maximum number of 4.
-    AMateria *five = new Ice();
+    AMateria* five = new Ice();
     src->learnMateria(five);
 
     // Specify a non-existent Materia_name.
+    std::cout << "tmp = src->createMateria(\"NO_SUCH_MATERIA\");" << std::endl;
     tmp = src->createMateria("NO_SUCH_MATERIA");
     if (tmp == NULL)
     {
-        std::cout << "Materia is full." << std::endl;
+        std::cout << "Materia is not found." << std::endl;
     }
 
     tmp = src->createMateria("ice");
@@ -71,6 +72,6 @@ void test()
 int main()
 {
     test();
-    system("leaks a.out");
+//    system("leaks a.out");
     return 0;
 }

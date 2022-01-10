@@ -2,6 +2,7 @@
 #define MATERIASOURCE_HPP
 
 #include <string>
+
 #include "IMateriaSource.hpp"
 class MateriaSource : public IMateriaSource
 {
@@ -11,8 +12,8 @@ public:
     ~MateriaSource();
     MateriaSource &operator=(const MateriaSource &other);
 
-    void learnMateria(AMateria* m);
-    AMateria* createMateria(std::string const & type);
+    void learnMateria(AMateria *m);
+    AMateria *createMateria(std::string const &type);
 
 private:
     static const size_t kMaxMateria = 4;

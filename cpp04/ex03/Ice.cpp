@@ -4,26 +4,13 @@
 
 const std::string Ice::kDefaultType = "ice";
 
-Ice::Ice() : AMateria(kDefaultType)
-{
-    std::cout << "Ice default constructor called" << std::endl;
-}
+Ice::Ice() : AMateria(kDefaultType) {}
 
-Ice::Ice(const std::string &type) : AMateria(type)
-{
-    std::cout << "Ice " << type << " constructor called" << std::endl;
-}
+Ice::Ice(const std::string &type) : AMateria(type) {}
 
-Ice::Ice(const Ice &other)
-{
-    std::cout << "Ice copy constructor called" << std::endl;
-    *this = other;
-}
+Ice::Ice(const Ice &other) { *this = other; }
 
-Ice::~Ice()
-{
-    std::cout << "Ice " << type_ << " destructor called" << std::endl;
-}
+Ice::~Ice() {}
 
 Ice &Ice::operator=(const Ice &other)
 {

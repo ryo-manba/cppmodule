@@ -4,20 +4,13 @@
 
 MateriaSource::MateriaSource()
 {
-    std::cout << "MateriaSource default constructor called" << std::endl;
-    for (size_t i = 0; i < kMaxMateria; i++)
-        materias_[i] = NULL;
+    for (size_t i = 0; i < kMaxMateria; i++) materias_[i] = NULL;
 }
 
-MateriaSource::MateriaSource(const MateriaSource &other)
-{
-    std::cout << "MateriaSource copy constructor called" << std::endl;
-    *this = other;
-}
+MateriaSource::MateriaSource(const MateriaSource &other) { *this = other; }
 
 MateriaSource::~MateriaSource()
 {
-    std::cout << "MateriaSource destructor called" << std::endl;
     for (size_t i = 0; i < kMaxMateria; i++)
     {
         if (materias_[i])
@@ -34,8 +27,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
         for (size_t i = 0; i < kMaxMateria; i++)
         {
             delete materias_[i];
-            if (other.materias_[i])
-                materias_[i] = other.materias_[i]->clone();
+            if (other.materias_[i]) materias_[i] = other.materias_[i]->clone();
         }
     }
     return *this;
@@ -48,7 +40,7 @@ void MateriaSource::learnMateria(AMateria *m)
         if (materias_[i] == NULL)
         {
             materias_[i] = m;
-            return ;
+            return;
         }
     }
 }
@@ -59,7 +51,7 @@ AMateria *MateriaSource::createMateria(std::string const &type)
     {
         if (materias_[i] == NULL)
         {
-            continue ;
+            continue;
         }
         if (materias_[i]->getType() == type)
         {

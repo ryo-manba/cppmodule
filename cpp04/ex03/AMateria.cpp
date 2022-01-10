@@ -4,26 +4,13 @@
 
 const std::string AMateria::kDefaultType = "NOTYPE";
 
-AMateria::AMateria() : type_(kDefaultType)
-{
-    std::cout << "AMateria default constructor called" << std::endl;
-}
+AMateria::AMateria() : type_(kDefaultType) {}
 
-AMateria::AMateria(std::string const &type) : type_(type)
-{
-    std::cout << "AMateria " << type << " constructor called" << std::endl;
-}
+AMateria::AMateria(std::string const &type) : type_(type) {}
 
-AMateria::AMateria(const AMateria &other)
-{
-    std::cout << "AMateria copy constructor called" << std::endl;
-    *this = other;
-}
+AMateria::AMateria(const AMateria &other) { *this = other; }
 
-AMateria::~AMateria()
-{
-    std::cout << "AMateria " << type_ << " destructor called" << std::endl;
-}
+AMateria::~AMateria() {}
 
 AMateria &AMateria::operator=(const AMateria &other)
 {

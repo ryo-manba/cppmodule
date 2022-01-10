@@ -6,31 +6,18 @@ const std::string Character::kDefaultName = "NONAME";
 
 Character::Character() : name_(kDefaultName)
 {
-    std::cout << "Character default constructor called" << std::endl;
-    for (size_t i = 0; i < kMaxMateria; i++)
-    {
-        materias_[i] = NULL;
-    }
+    for (size_t i = 0; i < kMaxMateria; i++) materias_[i] = NULL;
 }
 
 Character::Character(std::string const &name) : name_(name)
 {
-    std::cout << "Character " << name_ << " constructor called" << std::endl;
-    for (size_t i = 0; i < kMaxMateria; i++)
-    {
-        materias_[i] = NULL;
-    }
+    for (size_t i = 0; i < kMaxMateria; i++) materias_[i] = NULL;
 }
 
-Character::Character(const Character &other)
-{
-    std::cout << "Character copy constructor called" << std::endl;
-    *this = other;
-}
+Character::Character(const Character &other) { *this = other; }
 
 Character::~Character()
 {
-    std::cout << "Character " << name_ << " destructor called" << std::endl;
     for (size_t i = 0; i < kMaxMateria; i++)
     {
         if (materias_[i])
@@ -80,12 +67,10 @@ bool Character::isValidIndex(int idx) const
 
 void Character::unequip(int idx)
 {
-    if (isValidIndex(idx) && materias_[idx])
-        materias_[idx] = NULL;
+    if (isValidIndex(idx) && materias_[idx]) materias_[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter &target)
 {
-    if (isValidIndex(idx) && materias_[idx])
-        materias_[idx]->use(target);
+    if (isValidIndex(idx) && materias_[idx]) materias_[idx]->use(target);
 }
