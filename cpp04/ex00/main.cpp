@@ -6,17 +6,18 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-void wrongTest()
+void wrongAnimalTest()
 {
     std::cout << "\n-----Wrong Animal Test-----" << std::endl;
     const WrongAnimal* meta = new WrongAnimal();
     const WrongAnimal* i    = new WrongCat();
     std::cout << "-----getType()------" << std::endl;
-    std::cout << i->getType() << " " << std::endl;
+    std::cout << "Wrong Cat = " << i->getType() << " " << std::endl;
 
     std::cout << "-----makeSound()-----" << std::endl;
-    i->makeSound();    // will output the cat sound!
+    i->makeSound();    // will output the animal sound!
     meta->makeSound();
+    std::cout << std::endl;
     delete i;
     delete meta;
 }
@@ -35,7 +36,7 @@ int main()
     j->makeSound();
     meta->makeSound();
 
-    wrongTest();
+    wrongAnimalTest();
 
     delete i;
     delete j;
