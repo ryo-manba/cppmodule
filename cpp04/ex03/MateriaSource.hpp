@@ -16,8 +16,7 @@ public:
 
 private:
     static const size_t kMaxMateria = 4;
-    AMateria *materia_[kMaxMateria];
+    AMateria *materias_[kMaxMateria];
 };
-
 
 #endif

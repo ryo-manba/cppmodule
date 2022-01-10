@@ -13,8 +13,6 @@ public:
     Character &operator=(const Character &other);
 
     virtual std::string const &getName() const;
-    const AMateria* getMateria(int idx) const;
-
     virtual void equip(AMateria *m);
     virtual void unequip(int idx);
     virtual void use(int idx, ICharacter &target);
@@ -23,7 +21,7 @@ private:
     static const std::string kDefaultName;
     static const size_t kMaxMateria = 4;
     bool isValidIndex(int idx) const;
-    AMateria *materia_[kMaxMateria];
+    AMateria *materias_[kMaxMateria];
     std::string name_;
 };
 

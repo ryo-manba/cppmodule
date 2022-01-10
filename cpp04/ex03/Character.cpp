@@ -9,7 +9,7 @@ Character::Character() : name_(kDefaultName)
     std::cout << "Character default constructor called" << std::endl;
     for (size_t i = 0; i < kMaxMateria; i++)
     {
-        materia_[i] = NULL;
+        materias_[i] = NULL;
     }
 }
 
@@ -18,7 +18,7 @@ Character::Character(std::string const &name) : name_(name)
     std::cout << "Character " << name_ << " constructor called" << std::endl;
     for (size_t i = 0; i < kMaxMateria; i++)
     {
-        materia_[i] = NULL;
+        materias_[i] = NULL;
     }
 }
 
@@ -33,9 +33,9 @@ Character::~Character()
     std::cout << "Character " << name_ << " destructor called" << std::endl;
     for (size_t i = 0; i < kMaxMateria; i++)
     {
-        if (materia_[i])
+        if (materias_[i])
         {
-            delete materia_[i];
+            delete materias_[i];
         }
     }
 }
@@ -46,14 +46,14 @@ Character &Character::operator=(const Character &other)
     {
         for (size_t i = 0; i < kMaxMateria; i++)
         {
-            delete materia_[i];
+            delete materias_[i];
         }
         for (size_t i = 0; i < kMaxMateria; i++)
         {
-            if (other.materia_[i])
-                materia_[i] = other.materia_[i]->clone();
+            if (other.materias_[i])
+                materias_[i] = other.materias_[i]->clone();
             else
-                materia_[i] = NULL;
+                materias_[i] = NULL;
         }
     }
     return *this;
@@ -65,9 +65,9 @@ void Character::equip(AMateria *m)
 {
     for (size_t i = 0; i < kMaxMateria; i++)
     {
-        if (materia_[i] == NULL)
+        if (materias_[i] == NULL)
         {
-            materia_[i] = m;
+            materias_[i] = m;
             return;
         }
     }
@@ -78,20 +78,14 @@ bool Character::isValidIndex(int idx) const
     return 0 <= idx && idx < static_cast<int>(kMaxMateria);
 }
 
-const AMateria* Character::getMateria(int idx) const
-{
-    if (isValidIndex(idx))
-        return materia_[idx];
-    else
-        return NULL;
-}
-
 void Character::unequip(int idx)
 {
-    if (isValidIndex(idx) && !materia_[idx]) materia_[idx] = NULL;
+    if (isValidIndex(idx) && materias_[idx])
+        materias_[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter &target)
 {
-    if (isValidIndex(idx) && !materia_[idx]) materia_[idx]->use(target);
+    if (isValidIndex(idx) && materias_[idx])
+        materias_[idx]->use(target);
 }
