@@ -15,6 +15,12 @@ Dog::Dog(std::string const &type) : Animal(type), brain_(new Brain())
     std::cout << "Dog " << type << " constructor called" << std::endl;
 }
 
+Dog::Dog(const Dog &other)
+{
+    *this = other;
+    std::cout << "Dog copy constructor called" << std::endl;
+}
+
 Dog::~Dog()
 {
     std::cout << "Dog " << this->Animal::getType() << " destructor called"
@@ -27,8 +33,6 @@ Dog &Dog::operator=(Dog const &other)
     if (this != &other)
     {
         this->Animal::setType(other.getType());
-
-        delete brain_;
         brain_ = new Brain(*(other.brain_));
     }
     return *this;

@@ -15,6 +15,12 @@ Cat::Cat(std::string const &type) : Animal(type), brain_(new Brain())
     std::cout << "Cat " << type << " constructor called" << std::endl;
 }
 
+Cat::Cat(const Cat &other)
+{
+    *this = other;
+    std::cout << "Cat copy constructor called" << std::endl;
+}
+
 Cat::~Cat()
 {
     std::cout << "Cat " << this->Animal::getType() << " destructor called"
@@ -27,8 +33,6 @@ Cat &Cat::operator=(Cat const &other)
     if (this != &other)
     {
         this->Animal::setType(other.getType());
-
-        delete brain_;
         brain_ = new Brain(*(other.brain_));
     }
     return *this;
