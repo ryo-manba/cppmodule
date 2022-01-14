@@ -26,16 +26,16 @@ class Bureaucrat
     };
 
 public:
-    Bureaucrat();
+    Bureaucrat(void);
     Bureaucrat(const Bureaucrat &other);
     Bureaucrat(const std::string &name, const int &grade);
     Bureaucrat &operator=(const Bureaucrat &other);
-    ~Bureaucrat();
+    ~Bureaucrat(void);
 
-    const std::string &getName() const;
-    const int &getGrade() const;
-    void incrementGrade();
-    void decrementGrade();
+    const std::string &getName(void) const;
+    const int &getGrade(void) const;
+    void incrementGrade(void);
+    void decrementGrade(void);
 
 private:
     const static int kHighestPossible;

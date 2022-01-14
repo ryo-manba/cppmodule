@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+// constant
 const int Bureaucrat::kHighestPossible     = 1;
 const int Bureaucrat::kLowestPossible      = 150;
 const int Bureaucrat::kDefaultGrade        = 42;
@@ -9,6 +10,7 @@ const std::string Bureaucrat::kDefaultName = "NONAME";
 const char *Bureaucrat::kErrTooHighMsg     = "ERROR: Grade Too High";
 const char *Bureaucrat::kErrTooLowMsg      = "ERROR: Grade Too Low";
 
+// exception
 Bureaucrat::GradeTooHighException::GradeTooHighException(const char *msg)
     : msg(msg)
 {
@@ -29,8 +31,7 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
     return msg;
 }
 
-Bureaucrat::Bureaucrat() : name_(kDefaultName), grade_(kDefaultGrade) {}
-
+Bureaucrat::Bureaucrat(void) : name_(kDefaultName), grade_(kDefaultGrade) {}
 Bureaucrat::Bureaucrat(const Bureaucrat &other) { *this = other; }
 
 Bureaucrat::Bureaucrat(const std::string &name, const int &grade)
@@ -38,11 +39,11 @@ Bureaucrat::Bureaucrat(const std::string &name, const int &grade)
 {
     if (grade < kHighestPossible)
     {
-        throw GradeTooLowException(kErrTooLowMsg);
+        throw GradeTooHighException(kErrTooHighMsg);
     }
     if (grade > kLowestPossible)
     {
-        throw GradeTooHighException(kErrTooHighMsg);
+        throw GradeTooLowException(kErrTooLowMsg);
     }
 }
 
@@ -56,13 +57,12 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
     return *this;
 }
 
-Bureaucrat::~Bureaucrat() {}
+Bureaucrat::~Bureaucrat(void) {}
 
-const std::string &Bureaucrat::getName() const { return name_; }
+const std::string &Bureaucrat::getName(void) const { return name_; }
+const int &Bureaucrat::getGrade(void) const { return grade_; }
 
-const int &Bureaucrat::getGrade() const { return grade_; }
-
-void Bureaucrat::incrementGrade()
+void Bureaucrat::incrementGrade(void)
 {
     if (grade_ == kHighestPossible)
         throw GradeTooHighException(kErrTooHighMsg);
@@ -70,7 +70,7 @@ void Bureaucrat::incrementGrade()
         grade_ -= 1;
 }
 
-void Bureaucrat::decrementGrade()
+void Bureaucrat::decrementGrade(void)
 {
     if (grade_ == kLowestPossible)
         throw GradeTooLowException(kErrTooLowMsg);
