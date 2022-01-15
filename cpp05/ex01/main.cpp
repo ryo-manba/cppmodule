@@ -6,7 +6,7 @@
 static void tryBeSigned(Form &f, const Bureaucrat &bt)
 {
     std::cout << "-----beSigned-----" << std::endl;
-    std::cout << "GradeToSign : " << f.getGradeToSign() << "\n"
+    std::cout << "GradeRequiredToSign : " << f.getGradeRequiredToSign() << "\n"
               << "isSigned    : " << f.getIsSigned() << "\n"
               << "Grade       : " << bt.getGrade() << std::endl;
     try
