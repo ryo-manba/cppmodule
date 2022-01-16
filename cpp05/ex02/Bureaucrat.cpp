@@ -7,8 +7,8 @@ const int Bureaucrat::kHighestPossible     = 1;
 const int Bureaucrat::kLowestPossible      = 150;
 const int Bureaucrat::kDefaultGrade        = 42;
 const std::string Bureaucrat::kDefaultName = "NONAME";
-const char *Bureaucrat::kErrTooHighMsg     = "ERROR: Grade Too High";
-const char *Bureaucrat::kErrTooLowMsg      = "ERROR: Grade Too Low";
+const char *Bureaucrat::kErrTooHighMsg     = "Grade Too High";
+const char *Bureaucrat::kErrTooLowMsg      = "Grade Too Low";
 
 // exception
 Bureaucrat::GradeTooHighException::GradeTooHighException(const char *msg)
@@ -92,15 +92,18 @@ void Bureaucrat::signForm(Form &fm)
     }
 }
 
-void Bureaucrat::executeForm(Form const & form)
+void Bureaucrat::executeForm(Form const &form)
 {
     try
     {
         form.execute(*this);
-        std::cout << name_ << " executes " << form.getName() << "." << std::endl;
-    } catch (std::exception &e)
+        std::cout << name_ << " executes " << form.getName() << "."
+                  << std::endl;
+    }
+    catch (std::exception &e)
     {
-        std::cout << name_ << " failed to executes because " << e.what() << std::endl;
+        std::cout << name_ << " failed to executes because " << e.what()
+                  << "." << std::endl;
     }
 }
 

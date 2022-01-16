@@ -12,9 +12,9 @@ const std::string Form::kDefaultTarget      = "TARGET";
 // constant
 const int Form::kHighestPossible = 1;
 const int Form::kLowestPossible  = 150;
-const char *Form::kErrTooHighMsg = "ERROR: Grade Too High";
-const char *Form::kErrTooLowMsg  = "ERROR: Grade Too Low";
-const char *Form::kErrNotSignMsg = "ERROR: Not Signed";
+const char *Form::kErrTooHighMsg = "Grade Too High";
+const char *Form::kErrTooLowMsg  = "Grade Too Low";
+const char *Form::kErrNotSignMsg = "Not Signed";
 
 // exception
 Form::GradeTooHighException::GradeTooHighException(const char *msg) : msg(msg)
