@@ -11,6 +11,7 @@ static void testStart(const std::string name)
     std::cout << "-----" << name << "-----" << std::endl;
 }
 
+// Required grades: sign 145, exec 137
 static void testShrubbery(void)
 {
     Bureaucrat bt;
@@ -24,6 +25,7 @@ static void testShrubbery(void)
     bt.executeForm(shr);
 }
 
+// Required grades: sign 72, exec 45
 static void testRobotomy(void)
 {
     Bureaucrat bt;
@@ -37,9 +39,26 @@ static void testRobotomy(void)
     bt.executeForm(rob);
 }
 
+// Required grades: sign 25, exec 5
+static void testPresidential(void)
+{
+    Bureaucrat bt("bt", 1);
+    PresidentialPardonForm pre;
+
+    testStart("Presidential");
+    std::cout << bt << std::endl;
+    std::cout << pre << std::endl;
+
+    bt.signForm(pre);
+    bt.executeForm(pre);
+}
+
+// Bureaucrat : name, grade
+// Form : name, isSigned, gradeRequiredToSign, gradeRequiredtoExec, target
 int main()
 {
     testShrubbery();
     testRobotomy();
+    testPresidential();
     return 0;
 }
