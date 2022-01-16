@@ -6,19 +6,40 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
-void testExecute()
+static void testStart(const std::string name)
+{
+    std::cout << "-----" << name << "-----" << std::endl;
+}
+
+static void testShrubbery(void)
 {
     Bureaucrat bt;
     ShrubberyCreationForm shr;
 
-    bt.signForm(shr);
-    bt.executeForm(shr);
+    testStart("Shrubbery");
     std::cout << bt << std::endl;
     std::cout << shr << std::endl;
+
+    bt.signForm(shr);
+    bt.executeForm(shr);
+}
+
+static void testRobotomy(void)
+{
+    Bureaucrat bt;
+    RobotomyRequestForm rob;
+
+    testStart("Robotomy");
+    std::cout << bt << std::endl;
+    std::cout << rob << std::endl;
+
+    bt.signForm(rob);
+    bt.executeForm(rob);
 }
 
 int main()
 {
-    testExecute();
+    testShrubbery();
+    testRobotomy();
     return 0;
 }

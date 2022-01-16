@@ -12,13 +12,16 @@ public:
     RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
     ~RobotomyRequestForm(void);
 
-    void execute(Bureaucrat const & executor) const;
-
 private:
     const static std::string kDefaultName;
     const static int kGradeRequiredToSign;
     const static int kGradeRequiredToExec;
     const static std::string kDefaultTarget;
     const static bool kDefaultIsSigned;
+
+    const static std::string kDrillingNoises;
+
+    void action(void) const;
+
 };
 #endif

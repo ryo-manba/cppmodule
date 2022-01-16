@@ -124,6 +124,6 @@ std::ostream &operator<<(std::ostream &os, const Form &a)
        << "isSigned            : " << a.getIsSigned() << "\n"
        << "gradeRequiredToSign : " << a.getGradeRequiredToSign() << "\n"
        << "gradeRequiredToExec : " << a.getGradeRequiredToExec() << "\n"
-       << "target              : " << a.getTarget() << std::endl;
+       << "target              : " << a.getTarget();
     return os;
 }
