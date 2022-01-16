@@ -1,6 +1,7 @@
 #include "RobotomyRequestForm.hpp"
 
 #include <iostream>
+#include <cstdlib>
 
 // Default member
 const std::string RobotomyRequestForm::kDefaultName   = "Robotomy";
@@ -17,6 +18,15 @@ RobotomyRequestForm::RobotomyRequestForm(void)
            kGradeRequiredToSign,
            kGradeRequiredToExec,
            kDefaultTarget)
+{
+}
+
+RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
+    : Form(kDefaultName,
+           kDefaultIsSigned,
+           kGradeRequiredToSign,
+           kGradeRequiredToExec,
+           target)
 {
 }
 

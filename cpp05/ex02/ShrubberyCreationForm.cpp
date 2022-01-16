@@ -35,6 +35,15 @@ ShrubberyCreationForm::ShrubberyCreationForm(void)
 {
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
+    : Form(kDefaultName,
+           kDefaultIsSigned,
+           kGradeRequiredToSign,
+           kGradeRequiredToExec,
+           target)
+{
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
 {
     *this = other;

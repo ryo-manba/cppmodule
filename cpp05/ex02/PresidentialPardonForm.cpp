@@ -18,6 +18,16 @@ PresidentialPardonForm::PresidentialPardonForm(void)
 {
 }
 
+PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
+    : Form(kDefaultName,
+           kDefaultIsSigned,
+           kGradeRequiredToSign,
+           kGradeRequiredToExec,
+           target)
+{
+}
+
+
 PresidentialPardonForm::PresidentialPardonForm(
     const PresidentialPardonForm &other)
 {
