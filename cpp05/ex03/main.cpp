@@ -1,16 +1,16 @@
-#include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "Intern.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
-#include "Intern.hpp"
 
 // Required grades: sign 145, exec 137
-void testShrubbery(Form *shr)
+void testShrubbery(Form* shr)
 {
     Bureaucrat btOk("ok", 1);
     Bureaucrat btKo("ko", 150);
@@ -27,7 +27,7 @@ void testShrubbery(Form *shr)
 }
 
 // Required grades: sign 72, exec 45
-void testRobotomy(Form *rob)
+void testRobotomy(Form* rob)
 {
     Bureaucrat btOk("ok", 1);
     Bureaucrat btKo("ko", 150);
@@ -37,7 +37,7 @@ void testRobotomy(Form *rob)
     std::cout << btKo << std::endl;
     std::cout << *rob << std::endl;
 
-    srand((unsigned) time(NULL));
+    srand((unsigned)time(NULL));
     btOk.signForm(*rob);
     btOk.executeForm(*rob);
     btKo.signForm(*rob);
@@ -47,7 +47,7 @@ void testRobotomy(Form *rob)
 }
 
 // Required grades: sign 25, exec 5
-void testPresidential(Form *pre)
+void testPresidential(Form* pre)
 {
     Bureaucrat btOk("ok", 1);
     Bureaucrat btKo("ko", 150);
@@ -71,12 +71,16 @@ void testIntern(void)
     Form* ppf;
     Form* bad;
 
-    rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+    std::cout << "-----" << __func__ << "-----" << std::endl;
+    std::cout << "-----createRobotomy-----" << std::endl;
+    rrf = someRandomIntern.makeForm("robotomy request", "Bender1");
     testRobotomy(rrf);
 
+    std::cout << "------createShrubbery-----" << std::endl;
     scf = someRandomIntern.makeForm("shrubbery creation", "Bender2");
     testShrubbery(scf);
 
+    std::cout << "-----createPresidential-----" << std::endl;
     ppf = someRandomIntern.makeForm("presidential pardon", "Bender3");
     testPresidential(ppf);
 

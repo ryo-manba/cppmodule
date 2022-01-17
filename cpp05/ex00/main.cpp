@@ -2,10 +2,10 @@
 
 #include "Bureaucrat.hpp"
 
-static void tryIncrement(Bureaucrat *a)
+void testIncrement(Bureaucrat *a)
 {
-    std::cout << "-----Increment-----" << std::endl;
-    std::cout << "Before :" << a->getGrade() << std::endl;
+    std::cout << "-----" << __func__ << "-----" << std::endl;
+    std::cout << "Before : " << a->getGrade() << std::endl;
     try
     {
         a->incrementGrade();
@@ -14,13 +14,13 @@ static void tryIncrement(Bureaucrat *a)
     {
         std::cout << e.what() << std::endl;
     }
-    std::cout << "After  :" << a->getGrade() << std::endl;
+    std::cout << "After  : " << a->getGrade() << std::endl;
 }
 
-static void tryDecrement(Bureaucrat *a)
+void testDecrement(Bureaucrat *a)
 {
-    std::cout << "-----Decrement-----" << std::endl;
-    std::cout << "Before :" << a->getGrade() << std::endl;
+    std::cout << "-----" << __func__ << "-----" << std::endl;
+    std::cout << "Before : " << a->getGrade() << std::endl;
     try
     {
         a->decrementGrade();
@@ -29,7 +29,22 @@ static void tryDecrement(Bureaucrat *a)
     {
         std::cout << e.what() << std::endl;
     }
-    std::cout << "After  :" << a->getGrade() << std::endl;
+    std::cout << "After  : " << a->getGrade() << std::endl;
+}
+
+void testCreate(const std::string &name, const int &grade)
+{
+    std::cout << "-----" << __func__ << "-----" << std::endl;
+    std::cout << "name  : " << name
+              << " grade : " << grade << std::endl;
+    try
+    {
+        Bureaucrat(name, grade);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 }
 
 int main()
@@ -42,11 +57,15 @@ int main()
     std::cout << high << std::endl;
     std::cout << low << std::endl;
 
-    tryIncrement(&a);
-    tryDecrement(&a);
+    testIncrement(&a);
+    testDecrement(&a);
 
     // Out of range.
-    tryIncrement(&high);
-    tryDecrement(&low);
+    testIncrement(&high);
+    testDecrement(&low);
+
+    testCreate("high", 0);
+    testCreate("low", 151);
+
     return 0;
 }

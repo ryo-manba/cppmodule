@@ -34,7 +34,7 @@ public:
     Form(void);
     Form(const Form &other);
     Form(const std::string &name, const bool &isSigned,
-         const int &GradeRequiredToSign, const int &gradeRequiredToExec);
+         const int &gradeRequiredToSign, const int &gradeRequiredToExec);
     Form &operator=(const Form &other);
     ~Form(void);
 

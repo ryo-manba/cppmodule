@@ -39,12 +39,12 @@ Form::Form(const std::string &name, const bool &isSigned,
       gradeRequiredToExec_(gradeRequiredToExec)
 {
     if (gradeRequiredToSign < kHighestPossible ||
-        gradeRequiredToExec_ < kHighestPossible)
+        gradeRequiredToExec < kHighestPossible)
     {
         throw GradeTooHighException(kErrTooHighMsg);
     }
     if (gradeRequiredToSign > kLowestPossible ||
-        gradeRequiredToExec_ > kLowestPossible)
+        gradeRequiredToExec > kLowestPossible)
     {
         throw GradeTooLowException(kErrTooLowMsg);
     }
@@ -79,8 +79,8 @@ const int &Form::getGradeRequiredToExec(void) const
 
 std::ostream &operator<<(std::ostream &os, const Form &a)
 {
-    os << "name        : " << a.getName() << "\n"
-       << "isSigned    : " << a.getIsSigned() << "\n"
+    os << "name                : " << a.getName() << "\n"
+       << "isSigned            : " << a.getIsSigned() << "\n"
        << "gradeRequiredToSign : " << a.getGradeRequiredToSign() << "\n"
        << "gradeRequiredToExec : " << a.getGradeRequiredToExec();
     return os;
@@ -90,5 +90,6 @@ void Form::beSigned(const Bureaucrat &bt)
 {
     if (bt.getGrade() > gradeRequiredToSign_)
         throw GradeTooLowException(kErrTooLowMsg);
-    isSigned_ = true;
+    else
+        isSigned_ = true;
 }

@@ -3,33 +3,34 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-static void tryBeSigned(Form &f, const Bureaucrat &bt)
+static void tryBeSigned(Form &fm, const Bureaucrat &bt)
 {
-    std::cout << "-----beSigned-----" << std::endl;
-    std::cout << "GradeRequiredToSign : " << f.getGradeRequiredToSign() << "\n"
-              << "isSigned    : " << f.getIsSigned() << "\n"
-              << "Grade       : " << bt.getGrade() << std::endl;
+    std::cout << "-----" << __func__ << "-----" << std::endl;
+    std::cout << "GradeRequiredToSign : " << fm.getGradeRequiredToSign() << "\n"
+              << "isSigned            : " << fm.getIsSigned() << "\n"
+              << "Grade               : " << bt.getGrade() << std::endl;
     try
     {
-        f.beSigned(bt);
+        fm.beSigned(bt);
     }
     catch (std::exception &e)
     {
         std::cout << e.what() << std::endl;
     }
-    std::cout << "[After]" << "\n"
-              << "isSigned    : " << f.getIsSigned() << std::endl;
+    std::cout << "[After]"
+              << "\n"
+              << "isSigned            : " << fm.getIsSigned() << std::endl;
 }
 
 void testBeSigned()
 {
-    Bureaucrat bt;
+    Bureaucrat bt("bt", 42);
     Bureaucrat high("high", 1);
     Bureaucrat low("low", 150);
-    Form    f1;
-    Form    f2("form", false, 1, 1);
+    Form f1;
+    Form f2("form", false, 1, 1);
 
-    std::cout << "-----TEST BE SIGNED-----" << std::endl;
+    std::cout << "-----" << __func__ << "-----" << std::endl;
     std::cout << f1 << std::endl;
     std::cout << f2 << std::endl;
 
@@ -43,13 +44,13 @@ void testBeSigned()
 
 void testSignForm()
 {
-    Bureaucrat bt;
+    Bureaucrat bt("bt", 42);
     Bureaucrat high("high", 1);
     Bureaucrat low("low", 150);
-    Form    f1;
-    Form    f2("form", false, 1, 1);
+    Form f1;
+    Form f2("form", false, 1, 1);
 
-    std::cout << "-----TEST SIGN FORM -----" << std::endl;
+    std::cout << "-----" << __func__ << "-----" << std::endl;
     std::cout << f1 << std::endl;
     std::cout << f2 << std::endl;
 
@@ -61,9 +62,32 @@ void testSignForm()
     low.signForm(f2);
 }
 
+void testCreateForm(const std::string &name, const bool &isSigned,
+         const int &gradeRequiredToSign, const int &gradeRequiredToExec)
+{
+    std::cout << "-----" << __func__ << "-----" << std::endl;
+    std::cout << "name                : " << name << "\n"
+              << "isSigned            : " << isSigned << "\n"
+              << "gradeRequiredToSign : " << gradeRequiredToSign << "\n"
+              << "gradeRequiredToExec : " << gradeRequiredToExec << std::endl;
+    try
+    {
+        Form(name, isSigned, gradeRequiredToSign, gradeRequiredToExec);
+    }
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
+}
+
+
 int main()
 {
     testBeSigned();
     testSignForm();
+    testCreateForm("Error", false, 151, 42);
+    testCreateForm("Error", false, 42, 151);
+    testCreateForm("Error", false, 0, 42);
+    testCreateForm("Error", false, 42, 0);
     return 0;
 }
