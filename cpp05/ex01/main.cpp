@@ -47,10 +47,13 @@ void testSignForm()
     Bureaucrat bt("bt", 42);
     Bureaucrat high("high", 1);
     Bureaucrat low("low", 150);
-    Form f1;
-    Form f2("form", false, 1, 1);
+    Form f1("f1", false, 42, 42);
+    Form f2("f2", false, 1, 1);
 
     std::cout << "-----" << __func__ << "-----" << std::endl;
+    std::cout << bt << std::endl;
+    std::cout << high << std::endl;
+    std::cout << low << std::endl;
     std::cout << f1 << std::endl;
     std::cout << f2 << std::endl;
 

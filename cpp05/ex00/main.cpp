@@ -35,8 +35,8 @@ void testDecrement(Bureaucrat *a)
 void testCreate(const std::string &name, const int &grade)
 {
     std::cout << "-----" << __func__ << "-----" << std::endl;
-    std::cout << "name  : " << name
-              << " grade : " << grade << std::endl;
+    std::cout << "name  : " << name << "\n"
+              << "grade : " << grade << std::endl;
     try
     {
         Bureaucrat(name, grade);
