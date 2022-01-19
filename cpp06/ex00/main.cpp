@@ -17,5 +17,6 @@ int main(int argc, char **argv)
         return 1;
     }
     Convert cv(argv[1]);
+    cv.Print();
     return 0;
 }
