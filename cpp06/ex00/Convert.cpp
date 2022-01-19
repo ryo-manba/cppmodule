@@ -329,7 +329,7 @@ void Convert::printInt(const std::string& msg) const
 
 void Convert::printFloat(const float& f) const
 {
-    if (type_ == kTypeInt || allZeroFlag_ == true)
+    if (type_ == kTypeInt || type_ == kTypeChar || allZeroFlag_ == true)
     {
         std::cout << kPreFloat << f << ".0f" << std::endl;
     }
@@ -352,7 +352,7 @@ void Convert::printFloat(const std::string& msg) const
 
 void Convert::printDouble(const double& d) const
 {
-    if (type_ == kTypeInt || allZeroFlag_ == true)
+    if (type_ == kTypeInt || type_ == kTypeChar || allZeroFlag_ == true)
     {
         std::cout << kPreDouble << d << ".0" << std::endl;
     }

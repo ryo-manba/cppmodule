@@ -24,7 +24,7 @@ re: fclean all
 
 .PHONY: test
 test: $(NAME)
-	./$(NAME)
+	./test.sh
 
 .PHONY: debug
 debug: CXXFLAGS += -g -fsanitize=address
