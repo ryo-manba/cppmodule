@@ -45,7 +45,7 @@ private:
     const static char *kErrTooHighMsg;
     const static char *kErrTooLowMsg;
 
-    std::string name_;
+    const std::string name_;
     int grade_;
 };
 
