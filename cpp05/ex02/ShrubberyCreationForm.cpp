@@ -45,21 +45,13 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
+    : Form(other)
 {
-    *this = other;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(
-    const ShrubberyCreationForm &other)
+    const ShrubberyCreationForm&)
 {
-    if (this != &other)
-    {
-        setName(other.getName());
-        setIsSigned(other.getIsSigned());
-        setGradeRequiredToSign(other.getGradeRequiredToSign());
-        setGradeRequiredToExec(other.getGradeRequiredToExec());
-        setTarget(other.getTarget());
-    }
     return *this;
 }
 

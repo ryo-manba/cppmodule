@@ -59,11 +59,6 @@ public:
 protected:
     const static bool kDefaultIsSigned;
     const static std::string kDefaultTarget;
-    void setName(const std::string &name);
-    void setIsSigned(const bool &isSigned);
-    void setGradeRequiredToSign(const int &grade);
-    void setGradeRequiredToExec(const int &grade);
-    void setTarget(const std::string &target);
 
 private:
     const static int kHighestPossible;
@@ -75,14 +70,13 @@ private:
     const static char *kErrTooLowMsg;
     const static char *kErrNotSignMsg;
 
-    std::string name_;
+    const std::string name_;
     bool isSigned_;
-    int gradeRequiredToSign_;
-    int gradeRequiredToExec_;
-    std::string target_;
+    const int gradeRequiredToSign_;
+    const int gradeRequiredToExec_;
+    const std::string target_;
 
     virtual void action(void) const = 0;
-
 };
 
 std::ostream &operator<<(std::ostream &os, const Form &a);

@@ -3,10 +3,10 @@
 #include <iostream>
 
 // Default member
-const std::string PresidentialPardonForm::kDefaultName = "Presidential";
-const bool PresidentialPardonForm::kDefaultIsSigned    = Form::kDefaultIsSigned;
-const int PresidentialPardonForm::kGradeRequiredToSign = 25;
-const int PresidentialPardonForm::kGradeRequiredToExec = 5;
+const std::string PresidentialPardonForm::kDefaultName   = "Presidential";
+const bool PresidentialPardonForm::kDefaultIsSigned      = Form::kDefaultIsSigned;
+const int PresidentialPardonForm::kGradeRequiredToSign   = 25;
+const int PresidentialPardonForm::kGradeRequiredToExec   = 5;
 const std::string PresidentialPardonForm::kDefaultTarget = Form::kDefaultTarget;
 
 PresidentialPardonForm::PresidentialPardonForm(void)
@@ -27,24 +27,15 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
 {
 }
 
-
 PresidentialPardonForm::PresidentialPardonForm(
     const PresidentialPardonForm &other)
+    : Form(other)
 {
-    *this = other;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(
-    const PresidentialPardonForm &other)
+    const PresidentialPardonForm &)
 {
-    if (this != &other)
-    {
-        setName(other.getName());
-        setIsSigned(other.getIsSigned());
-        setGradeRequiredToSign(other.getGradeRequiredToSign());
-        setGradeRequiredToExec(other.getGradeRequiredToExec());
-        setTarget(other.getTarget());
-    }
     return *this;
 }
 
