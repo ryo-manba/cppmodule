@@ -31,21 +31,13 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
+    : Form(other)
 {
-    *this = other;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(
-    const RobotomyRequestForm &other)
+    const RobotomyRequestForm &)
 {
-    if (this != &other)
-    {
-        setName(other.getName());
-        setIsSigned(other.getIsSigned());
-        setGradeRequiredToSign(other.getGradeRequiredToSign());
-        setGradeRequiredToExec(other.getGradeRequiredToExec());
-        setTarget(other.getTarget());
-    }
     return *this;
 }
 

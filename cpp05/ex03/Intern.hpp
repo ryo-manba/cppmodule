@@ -9,7 +9,7 @@ class Intern
 public:
     Intern(void);
     Intern(const Intern &other);
-    Intern &operator=(const Intern &other);
+    Intern &operator=(const Intern &);
     ~Intern(void);
 
     Form *makeForm(const std::string &name, const std::string &target) const;

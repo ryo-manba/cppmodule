@@ -59,17 +59,20 @@ Form::Form(const std::string &name, const bool &isSigned,
     }
 }
 
-Form::Form(const Form &other) { *this = other; }
+Form::Form(const Form &other)
+    : name_(other.getName()),
+      isSigned_(other.getIsSigned()),
+      gradeRequiredToSign_(other.getGradeRequiredToSign()),
+      gradeRequiredToExec_(other.getGradeRequiredToExec()),
+      target_(other.getTarget())
+{    
+}
 
 Form &Form::operator=(const Form &other)
 {
     if (this != &other)
     {
-        name_                = other.getName();
-        isSigned_            = other.getIsSigned();
-        gradeRequiredToSign_ = other.getGradeRequiredToSign();
-        gradeRequiredToExec_ = other.getGradeRequiredToExec();
-        target_              = other.getTarget();
+        isSigned_ = other.getIsSigned();
     }
     return *this;
 }
@@ -88,19 +91,6 @@ const int &Form::getGradeRequiredToExec(void) const
     return gradeRequiredToExec_;
 }
 const std::string &Form::getTarget(void) const { return target_; }
-
-// setter
-void Form::setName(const std::string &name) { name_ = name; }
-void Form::setIsSigned(const bool &isSigned) { isSigned_ = isSigned; }
-void Form::setGradeRequiredToSign(const int &grade)
-{
-    gradeRequiredToSign_ = grade;
-}
-void Form::setGradeRequiredToExec(const int &grade)
-{
-    gradeRequiredToExec_ = grade;
-}
-void Form::setTarget(const std::string &target) { target_ = target; }
 
 void Form::beSigned(const Bureaucrat &bt)
 {

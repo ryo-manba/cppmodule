@@ -23,9 +23,8 @@ Intern::Intern(const Intern &other)
     *this = other;
 }
 
-Intern &Intern::operator=(const Intern &other)
+Intern &Intern::operator=(const Intern&)
 {
-    (void)other;
      return *this;
 }
 
