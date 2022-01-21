@@ -33,8 +33,10 @@ public:
 public:
     Form(void);
     Form(const Form &other);
-    Form(const std::string &name, const bool &isSigned,
-         const int &gradeRequiredToSign, const int &gradeRequiredToExec);
+    Form(const std::string &name,
+         const bool &isSigned,
+         const int &gradeRequiredToSign,
+         const int &gradeRequiredToExec);
     Form &operator=(const Form &other);
     ~Form(void);
 
@@ -55,10 +57,10 @@ private:
     const static char *kErrTooHighMsg;
     const static char *kErrTooLowMsg;
 
-    std::string name_;
+    const std::string name_;
     bool isSigned_;
-    int gradeRequiredToSign_;
-    int gradeRequiredToExec_;
+    const int gradeRequiredToSign_;
+    const int gradeRequiredToExec_;
 };
 
 std::ostream &operator<<(std::ostream &os, const Form &a);

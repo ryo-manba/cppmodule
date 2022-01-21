@@ -17,11 +17,17 @@ Form::GradeTooHighException::GradeTooHighException(const char *msg) : msg(msg)
 {
 }
 
-const char *Form::GradeTooHighException::what() const throw() { return msg; }
+const char *Form::GradeTooHighException::what() const throw()
+{
+    return msg;
+}
 
 Form::GradeTooLowException::GradeTooLowException(const char *msg) : msg(msg) {}
 
-const char *Form::GradeTooLowException::what() const throw() { return msg; }
+const char *Form::GradeTooLowException::what() const throw()
+{
+    return msg;
+}
 
 Form::Form(void)
     : name_(kDefaultName),
@@ -50,22 +56,26 @@ Form::Form(const std::string &name, const bool &isSigned,
     }
 }
 
-Form::Form(const Form &other) { *this = other; }
+Form::Form(const Form &other)
+    : name_(other.getName()),
+      isSigned_(other.getIsSigned()),
+      gradeRequiredToSign_(other.getGradeRequiredToSign()),
+      gradeRequiredToExec_(other.getGradeRequiredToExec())
+{
+}
 
 Form &Form::operator=(const Form &other)
 {
     if (this != &other)
     {
-        name_                = other.getName();
-        isSigned_            = other.getIsSigned();
-        gradeRequiredToSign_ = other.getGradeRequiredToSign();
-        gradeRequiredToExec_ = other.getGradeRequiredToExec();
+        isSigned_ = other.getIsSigned();
     }
     return *this;
 }
 
 Form::~Form(void) {}
 
+// getter
 const std::string &Form::getName(void) const { return name_; }
 const bool &Form::getIsSigned(void) const { return isSigned_; }
 const int &Form::getGradeRequiredToSign(void) const

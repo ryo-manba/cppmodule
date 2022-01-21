@@ -7,8 +7,8 @@ const int Bureaucrat::kHighestPossible     = 1;
 const int Bureaucrat::kLowestPossible      = 150;
 const int Bureaucrat::kDefaultGrade        = 42;
 const std::string Bureaucrat::kDefaultName = "NONAME";
-const char *Bureaucrat::kErrTooHighMsg     = "ERROR: Grade Too High";
-const char *Bureaucrat::kErrTooLowMsg      = "ERROR: Grade Too Low";
+const char *Bureaucrat::kErrTooHighMsg     = "Grade Too High";
+const char *Bureaucrat::kErrTooLowMsg      = "Grade Too Low";
 
 // exception
 Bureaucrat::GradeTooHighException::GradeTooHighException(const char *msg)
@@ -31,8 +31,12 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
     return msg;
 }
 
+// Bureaucrat
 Bureaucrat::Bureaucrat(void) : name_(kDefaultName), grade_(kDefaultGrade) {}
-Bureaucrat::Bureaucrat(const Bureaucrat &other) { *this = other; }
+Bureaucrat::Bureaucrat(const Bureaucrat &other)
+{
+    *this = other;
+}
 
 Bureaucrat::Bureaucrat(const std::string &name, const int &grade)
     : name_(name), grade_(grade)
@@ -51,7 +55,6 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 {
     if (this != &other)
     {
-        name_  = other.getName();
         grade_ = other.getGrade();
     }
     return *this;
@@ -59,6 +62,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 
 Bureaucrat::~Bureaucrat(void) {}
 
+// getter
 const std::string &Bureaucrat::getName(void) const { return name_; }
 const int &Bureaucrat::getGrade(void) const { return grade_; }
 

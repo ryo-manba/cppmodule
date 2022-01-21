@@ -83,7 +83,6 @@ void testCreateForm(const std::string &name, const bool &isSigned,
     }
 }
 
-
 int main()
 {
     testBeSigned();
