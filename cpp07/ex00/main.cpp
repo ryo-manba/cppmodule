@@ -1,5 +1,10 @@
 #include "whatever.hpp"
+#include "whatever_test.hpp"
 #include <iostream>
+
+#ifndef ORIGIN
+ #define ORIGIN 0
+#endif
 
 void testSubject(void)
 {
@@ -57,7 +62,9 @@ void test(void)
 
 int main(void)
 {
-    testSubject();
-//    test();
+    if (ORIGIN)
+        testSubject();
+    else
+        test();
     return 0;
 }

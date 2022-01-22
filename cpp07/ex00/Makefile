@@ -5,27 +5,28 @@ CXXFLAGS:= -Wall -Wextra -Werror -std=c++98 -pedantic
 SRCS    := main.cpp
 OBJS    := $(SRCS:.cpp=.o)
 
-.PHONY  : all
 all     : $(NAME)
 
 $(NAME) : $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJS)
 
-.PHONY: clean
 clean:
 	$(RM) $(OBJS)
 
-.PHONY: fclean
 fclean: clean
 	$(RM) $(NAME)
 
-.PHONY: re
 re: fclean all
 
-.PHONY: test
+.PHONY  : all clean fclean re test
+
 test: $(NAME)
 	./a.out
 
-.PHONY: debug
 debug: CXXFLAGS += -g -fsanitize=address
 debug: re
+
+origin : CXXFLAGS += -DORIGIN=1
+origin : re
+
+.PHONY  : test debug origin
