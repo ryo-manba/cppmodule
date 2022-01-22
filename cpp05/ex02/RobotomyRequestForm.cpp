@@ -52,6 +52,6 @@ void RobotomyRequestForm::action(void) const
     }
     else
     {
-        std::cout << getTarget() << " robotomized has failed." << std::endl;
+        std::cout << getTarget() << " failed to robotomize." << std::endl;
     }
 }
