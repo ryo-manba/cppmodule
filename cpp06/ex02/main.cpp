@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <ctime>
 #include <iostream>
 
 #include "A.hpp"
@@ -32,7 +33,8 @@ Base* generate(void)
         case kTypeC:
             basePtr = new C;
             break;
-        default:;
+        default:
+            ;
     }
     return basePtr;
 }
@@ -62,7 +64,8 @@ void identify(Base& p)
 
     try
     {
-        (void)dynamic_cast<A&>(p);
+        A& dummy = dynamic_cast<A&>(p);
+        static_cast<void>(dummy);
         type = "A";
     }
     catch (std::bad_cast& e)
@@ -70,7 +73,8 @@ void identify(Base& p)
     }
     try
     {
-        (void)dynamic_cast<B&>(p);
+        B& dummy = dynamic_cast<B&>(p);
+        static_cast<void>(dummy);
         type = "B";
     }
     catch (std::bad_cast& e)
@@ -78,7 +82,8 @@ void identify(Base& p)
     }
     try
     {
-        (void)dynamic_cast<C&>(p);
+        C& dummy = dynamic_cast<C&>(p);
+        static_cast<void>(dummy);
         type = "C";
     }
     catch (std::bad_cast& e)
@@ -89,10 +94,11 @@ void identify(Base& p)
 
 int main(void)
 {
-    std::srand(static_cast<unsigned int>(std::time(NULL)));
+    std::srand(static_cast<unsigned>(std::time(NULL)));
 
     Base* basePtr;
     basePtr = generate();
+
     identify(basePtr);
     identify(*basePtr);
 
