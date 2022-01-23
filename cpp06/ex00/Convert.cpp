@@ -125,7 +125,10 @@ bool Convert::isAllZero(const std::string& value, size_t idx)
 {
     while (std::isdigit(value[idx]))
     {
-        if (value[idx] != '0') return false;
+        if (value[idx] != '0')
+        {
+            return false;
+        }
         idx += 1;
     }
     return true;
