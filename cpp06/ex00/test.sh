@@ -21,7 +21,7 @@ func()
 make
 
 print_color $YELLOW "-----INVALID ARGS-----"
-func 1 1
+func "1 1"
 func +-1
 func helloworld
 func .f

@@ -13,6 +13,7 @@ enum typeSpecifier
     kTypeFloat,
     kTypeDouble,
     kTypeImpossible,
+    kTypeSpecial,
     kTypeDefalut
 };
 
@@ -32,8 +33,6 @@ public:
 private:
     const static std::string kMsgNonDisplay;
     const static std::string kMsgImpossible;
-    const static size_t kNbLimits = 6;
-    const static std::string kLimits[kNbLimits];
 
     const static std::string kPreChar;
     const static std::string kPreInt;
@@ -45,10 +44,7 @@ private:
     int i_;
     float f_;
     double d_;
-
     typeSpecifier type_;
-    bool isDisplayableFlag_;
-    bool allZeroFlag_;
 
     typeSpecifier parseType(void);
 
@@ -56,7 +52,9 @@ private:
     bool isInt(const std::string& value) const;
     bool isFloatOrDouble(const std::string& value);
     bool isAllZero(const std::string& value, size_t idx);
-    bool isInfOrNan(const std::string& value);
+    bool isSpecialValues(const std::string& value);
+
+    typeSpecifier checkSpecialTypes(const std::string& value);
 
     void convertChar(const std::string& value);
     void convertInt(const std::string& value);
@@ -81,8 +79,6 @@ private:
     const float& getFloat(void) const;
     const double& getDouble(void) const;
     const typeSpecifier& getType(void) const;
-    const bool& getIsDisplayableFlag(void) const;
-    const bool& getAllZeroFlag(void) const;
 };
 
 #endif

@@ -2,28 +2,20 @@
 
 #include <iomanip>
 #include <iostream>
+#include <limits>
 #include <sstream>
 
-const std::string Convert::kMsgNonDisplay     = "Non displayable";
-const std::string Convert::kMsgImpossible     = "impossible";
-const std::string Convert::kLimits[kNbLimits] = {"nan",   "nanf", "+inf",
-                                                 "+inff", "-inf", "-inff"};
+const std::string Convert::kMsgNonDisplay = "Non displayable";
+const std::string Convert::kMsgImpossible = "impossible";
 
 // pre message
-const std::string Convert::kPreChar   = "char   :";
-const std::string Convert::kPreInt    = "int    :";
-const std::string Convert::kPreFloat  = "float  :";
-const std::string Convert::kPreDouble = "double :";
+const std::string Convert::kPreChar   = "char   : ";
+const std::string Convert::kPreInt    = "int    : ";
+const std::string Convert::kPreFloat  = "float  : ";
+const std::string Convert::kPreDouble = "double : ";
 
 Convert::Convert(void)
-    : value_(""),
-      c_(0),
-      i_(0),
-      f_(0),
-      d_(0),
-      type_(kTypeDefalut),
-      isDisplayableFlag_(true),
-      allZeroFlag_(true)
+    : value_(""), c_(0), i_(0), f_(0), d_(0), type_(kTypeDefalut)
 {
 }
 
@@ -46,10 +38,7 @@ Convert::Convert(const std::string& value) : value_(value)
         case kTypeDouble:
             convertDouble(value_);
             break;
-        case kTypeImpossible:
-            break;
-        default:
-            ;
+        default:;
     }
 }
 
@@ -59,14 +48,12 @@ Convert& Convert::operator=(const Convert& other)
 {
     if (this != &other)
     {
-        value_             = other.getValue();
-        c_                 = other.getChar();
-        i_                 = other.getInt();
-        f_                 = other.getFloat();
-        d_                 = other.getDouble();
-        type_              = other.getType();
-        isDisplayableFlag_ = other.getIsDisplayableFlag();
-        allZeroFlag_       = other.getAllZeroFlag();
+        value_ = other.getValue();
+        c_     = other.getChar();
+        i_     = other.getInt();
+        f_     = other.getFloat();
+        d_     = other.getDouble();
+        type_  = other.getType();
     }
     return *this;
 }
@@ -74,16 +61,22 @@ Convert& Convert::operator=(const Convert& other)
 Convert::~Convert() {}
 
 const std::string& Convert::getValue(void) const { return value_; }
-
 void Convert::setValue(const std::string& value) { value_ = value; }
 
-bool Convert::isInfOrNan(const std::string& value)
+// 0,1,2 = double
+// 3,4,5 = float
+bool Convert::isSpecialValues(const std::string& value)
 {
-    for (size_t i = 0; i < kNbLimits; i++)
+    const std::string specials[6] = {"nan",  "+inf",  "-inf",
+                                     "nanf", "+inff", "-inff"};
+    for (size_t i = 0; i < 6; ++i)
     {
-        if (kLimits[i] == value)
+        if (specials[i] == value)
         {
-            type_ = static_cast<typeSpecifier>(i / 2);
+            if (i < 3)
+                type_ = kTypeDouble;
+            else
+                type_ = kTypeFloat;
             return true;
         }
     }
@@ -121,19 +114,6 @@ bool Convert::isInt(const std::string& value) const
     return false;
 }
 
-bool Convert::isAllZero(const std::string& value, size_t idx)
-{
-    while (std::isdigit(value[idx]))
-    {
-        if (value[idx] != '0')
-        {
-            return false;
-        }
-        idx += 1;
-    }
-    return true;
-}
-
 bool Convert::isFloatOrDouble(const std::string& value)
 {
     size_t len = value.length();
@@ -149,7 +129,7 @@ bool Convert::isFloatOrDouble(const std::string& value)
     }
     if (value[idx] == '.')
     {
-        if (idx + 1 == len || idx == 0 || \
+        if (idx + 1 == len || idx == 0 ||
             ((idx == 1) && (value[idx - 1] == '+' || value[idx - 1] == '-')))
         {
             return false;
@@ -157,7 +137,6 @@ bool Convert::isFloatOrDouble(const std::string& value)
         idx += 1;
     }
 
-    allZeroFlag_ = isAllZero(value, idx);
     while (std::isdigit(value[idx]))
     {
         idx += 1;
@@ -177,7 +156,7 @@ bool Convert::isFloatOrDouble(const std::string& value)
 
 typeSpecifier Convert::parseType(void)
 {
-    if (isInfOrNan(value_))
+    if (isSpecialValues(value_))
     {
         return type_;
     }
@@ -198,14 +177,7 @@ typeSpecifier Convert::parseType(void)
 
 void Convert::convertChar(const std::string& value)
 {
-    std::istringstream iss(value);
-    iss >> c_;
-
-    if (!iss)
-    {
-        type_ = kTypeImpossible;
-        return;
-    }
+    c_ = static_cast<char>(value[0]);
     i_ = static_cast<int>(c_);
     f_ = static_cast<float>(c_);
     d_ = static_cast<double>(c_);
@@ -221,70 +193,96 @@ void Convert::convertInt(const std::string& value)
         type_ = kTypeImpossible;
         return;
     }
-    else if (std::isprint(i_))
-    {
-        c_ = static_cast<char>(i_);
-    }
-    else
-    {
-        isDisplayableFlag_ = false;
-    }
+    c_ = static_cast<char>(i_);
     f_ = static_cast<float>(i_);
     d_ = static_cast<double>(i_);
 }
 
+typeSpecifier Convert::checkSpecialTypes(const std::string& value)
+{
+    typeSpecifier spType          = kTypeDefalut;
+    const std::string specials[3] = {"nan", "+inf", "-inf"};
+    for (size_t i = 0; i < 3; ++i)
+    {
+        if (value == specials[i])
+        {
+            spType = static_cast<typeSpecifier>(i);
+            type_  = kTypeSpecial;
+            break;
+        }
+    }
+    return spType;
+}
+
 void Convert::convertFloat(const std::string& value)
 {
-    std::istringstream iss(value);
-    iss >> f_;
+    int specialType = checkSpecialTypes(value);
 
-    if (!iss)
+    switch (specialType)
     {
-        type_ = kTypeImpossible;
-        return;
+        case kTypeNan:
+            f_ = std::numeric_limits<float>::quiet_NaN();
+            break;
+        case kTypePInf:
+            f_ = std::numeric_limits<float>::infinity();
+            break;
+        case kTypeNInf:
+            f_ = -std::numeric_limits<float>::infinity();
+            break;
+        case kTypeDefalut:
+            std::istringstream iss(value);
+            iss >> f_;
+            if (!iss)
+            {
+                type_ = kTypeImpossible;
+                return;
+            }
     }
-    else if (std::isprint(f_))
-    {
-        c_ = static_cast<char>(f_);
-    }
-    else
-    {
-        isDisplayableFlag_ = false;
-    }
+    c_ = static_cast<char>(f_);
     i_ = static_cast<int>(f_);
     d_ = static_cast<double>(f_);
 }
 
 void Convert::convertDouble(const std::string& value)
 {
-    std::istringstream iss(value);
-    iss >> d_;
+    int specialType = checkSpecialTypes(value);
 
-    if (!iss)
+    switch (specialType)
     {
-        type_ = kTypeImpossible;
+        case kTypeNan:
+            d_ = std::numeric_limits<double>::quiet_NaN();
+            break;
+        case kTypePInf:
+            d_ = std::numeric_limits<double>::infinity();
+            break;
+        case kTypeNInf:
+            d_ = -std::numeric_limits<double>::infinity();
+            break;
+        case kTypeDefalut:
+            std::istringstream iss(value);
+            iss >> d_;
+            if (!iss)
+            {
+                type_ = kTypeImpossible;
+                return;
+            }
     }
-    else if (std::isprint(d_))
-    {
-        c_ = static_cast<char>(d_);
-    }
-    else
-    {
-        isDisplayableFlag_ = false;
-    }
+    c_ = static_cast<char>(d_);
     i_ = static_cast<int>(d_);
     f_ = static_cast<float>(d_);
 }
 
+// template<typename T>
+// bool isOverflow()
+
 void Convert::Print(void) const
 {
-    const std::string limits[3] = {"nan", "+inf", "-inf"};
-    if (type_ <= kTypeNInf)
+    if (type_ == kTypeSpecial)
     {
         printChar(kMsgImpossible);
         printInt(kMsgImpossible);
-        printFloat(limits[type_]);
-        printDouble(limits[type_]);
+        printFloat(f_);
+        printDouble(d_);
     }
     else if (type_ == kTypeImpossible)
     {
@@ -305,14 +303,12 @@ void Convert::Print(void) const
 // print
 void Convert::printChar(const char& c) const
 {
-    if (isDisplayableFlag_ == false)
-    {
-        std::cout << kPreChar << kMsgNonDisplay << std::endl;
-    }
-    else
-    {
+    if (!(-128 <= i_ && i_ <= 127))
+        std::cout << kPreChar << kMsgImpossible << std::endl;
+    else if (std::isprint(c))
         std::cout << kPreChar << "'" << c << "'" << std::endl;
-    }
+    else
+        std::cout << kPreChar << kMsgNonDisplay << std::endl;
 }
 
 void Convert::printChar(const std::string& msg) const
@@ -332,7 +328,8 @@ void Convert::printInt(const std::string& msg) const
 
 void Convert::printFloat(const float& f) const
 {
-    if (type_ == kTypeInt || type_ == kTypeChar || allZeroFlag_ == true)
+    int tmp = static_cast<int>(f);
+    if (f - tmp == 0)
     {
         std::cout << kPreFloat << f << ".0f" << std::endl;
     }
@@ -355,7 +352,8 @@ void Convert::printFloat(const std::string& msg) const
 
 void Convert::printDouble(const double& d) const
 {
-    if (type_ == kTypeInt || type_ == kTypeChar || allZeroFlag_ == true)
+    long tmp = static_cast<long>(d);
+    if (d - tmp == 0)
     {
         std::cout << kPreDouble << d << ".0" << std::endl;
     }
@@ -376,8 +374,3 @@ const int& Convert::getInt(void) const { return i_; }
 const float& Convert::getFloat(void) const { return f_; }
 const double& Convert::getDouble(void) const { return d_; }
 const typeSpecifier& Convert::getType(void) const { return type_; }
-const bool& Convert::getIsDisplayableFlag(void) const
-{
-    return isDisplayableFlag_;
-}
-const bool& Convert::getAllZeroFlag(void) const { return allZeroFlag_; }
