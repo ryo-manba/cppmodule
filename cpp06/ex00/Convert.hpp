@@ -5,9 +5,6 @@
 
 enum typeSpecifier
 {
-    kTypeNan,
-    kTypePInf,
-    kTypeNInf,
     kTypeChar,
     kTypeInt,
     kTypeFloat,
@@ -15,6 +12,14 @@ enum typeSpecifier
     kTypeImpossible,
     kTypeSpecial,
     kTypeDefalut
+};
+
+enum typeSpecial
+{
+    kTypeNan,
+    kTypePInf,
+    kTypeNInf,
+    kTypeNormal
 };
 
 class Convert
@@ -45,6 +50,7 @@ private:
     float f_;
     double d_;
     typeSpecifier type_;
+    typeSpecial spType_;
 
     typeSpecifier parseType(void);
 
@@ -79,6 +85,7 @@ private:
     const float& getFloat(void) const;
     const double& getDouble(void) const;
     const typeSpecifier& getType(void) const;
+    const typeSpecial& getSpType(void) const;
 };
 
 #endif

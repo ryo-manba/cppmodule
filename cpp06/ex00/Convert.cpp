@@ -15,11 +15,18 @@ const std::string Convert::kPreFloat  = "float  : ";
 const std::string Convert::kPreDouble = "double : ";
 
 Convert::Convert(void)
-    : value_(""), c_(0), i_(0), f_(0), d_(0), type_(kTypeDefalut)
+    : value_(""),
+      c_(0),
+      i_(0),
+      f_(0),
+      d_(0),
+      type_(kTypeDefalut),
+      spType_(kTypeNormal)
 {
 }
 
-Convert::Convert(const std::string& value) : value_(value)
+Convert::Convert(const std::string& value)
+    : value_(value), type_(kTypeDefalut), spType_(kTypeNormal)
 {
     type_ = parseType();
 
@@ -48,12 +55,13 @@ Convert& Convert::operator=(const Convert& other)
 {
     if (this != &other)
     {
-        value_ = other.getValue();
-        c_     = other.getChar();
-        i_     = other.getInt();
-        f_     = other.getFloat();
-        d_     = other.getDouble();
-        type_  = other.getType();
+        value_  = other.getValue();
+        c_      = other.getChar();
+        i_      = other.getInt();
+        f_      = other.getFloat();
+        d_      = other.getDouble();
+        type_   = other.getType();
+        spType_ = other.getSpType();
     }
     return *this;
 }
@@ -74,9 +82,15 @@ bool Convert::isSpecialValues(const std::string& value)
         if (specials[i] == value)
         {
             if (i < 3)
-                type_ = kTypeDouble;
+            {
+                type_   = kTypeDouble;
+                spType_ = static_cast<typeSpecial>(i);
+            }
             else
-                type_ = kTypeFloat;
+            {
+                type_   = kTypeFloat;
+                spType_ = static_cast<typeSpecial>(i - 3);
+            }
             return true;
         }
     }
@@ -198,27 +212,9 @@ void Convert::convertInt(const std::string& value)
     d_ = static_cast<double>(i_);
 }
 
-typeSpecifier Convert::checkSpecialTypes(const std::string& value)
-{
-    typeSpecifier spType          = kTypeDefalut;
-    const std::string specials[3] = {"nan", "+inf", "-inf"};
-    for (size_t i = 0; i < 3; ++i)
-    {
-        if (value == specials[i])
-        {
-            spType = static_cast<typeSpecifier>(i);
-            type_  = kTypeSpecial;
-            break;
-        }
-    }
-    return spType;
-}
-
 void Convert::convertFloat(const std::string& value)
 {
-    int specialType = checkSpecialTypes(value);
-
-    switch (specialType)
+    switch (spType_)
     {
         case kTypeNan:
             f_ = std::numeric_limits<float>::quiet_NaN();
@@ -229,7 +225,7 @@ void Convert::convertFloat(const std::string& value)
         case kTypeNInf:
             f_ = -std::numeric_limits<float>::infinity();
             break;
-        case kTypeDefalut:
+        case kTypeNormal:
             std::istringstream iss(value);
             iss >> f_;
             if (!iss)
@@ -245,9 +241,7 @@ void Convert::convertFloat(const std::string& value)
 
 void Convert::convertDouble(const std::string& value)
 {
-    int specialType = checkSpecialTypes(value);
-
-    switch (specialType)
+    switch (spType_)
     {
         case kTypeNan:
             d_ = std::numeric_limits<double>::quiet_NaN();
@@ -258,7 +252,7 @@ void Convert::convertDouble(const std::string& value)
         case kTypeNInf:
             d_ = -std::numeric_limits<double>::infinity();
             break;
-        case kTypeDefalut:
+        case kTypeNormal:
             std::istringstream iss(value);
             iss >> d_;
             if (!iss)
@@ -272,12 +266,9 @@ void Convert::convertDouble(const std::string& value)
     f_ = static_cast<float>(d_);
 }
 
-// template<typename T>
-// bool isOverflow()
-
 void Convert::Print(void) const
 {
-    if (type_ == kTypeSpecial)
+    if (spType_ != kTypeNormal)
     {
         printChar(kMsgImpossible);
         printInt(kMsgImpossible);
@@ -318,7 +309,15 @@ void Convert::printChar(const std::string& msg) const
 
 void Convert::printInt(const int& i) const
 {
-    std::cout << kPreInt << i << std::endl;
+    if (d_ < std::numeric_limits<int>::min() ||
+        std::numeric_limits<int>::max() < d_)
+    {
+        std::cout << kPreInt << kMsgImpossible << std::endl;
+    }
+    else
+    {
+        std::cout << kPreInt << i << std::endl;
+    }
 }
 
 void Convert::printInt(const std::string& msg) const
@@ -328,6 +327,15 @@ void Convert::printInt(const std::string& msg) const
 
 void Convert::printFloat(const float& f) const
 {
+    if (spType_ == kTypeNormal)
+    {
+        if (d_ < -std::numeric_limits<float>::max() ||
+            std::numeric_limits<float>::max() < d_)
+        {
+            std::cout << kPreFloat << kMsgImpossible << std::endl;
+            return;
+        }
+    }
     int tmp = static_cast<int>(f);
     if (f - tmp == 0)
     {
@@ -374,3 +382,4 @@ const int& Convert::getInt(void) const { return i_; }
 const float& Convert::getFloat(void) const { return f_; }
 const double& Convert::getDouble(void) const { return d_; }
 const typeSpecifier& Convert::getType(void) const { return type_; }
+const typeSpecial& Convert::getSpType(void) const { return spType_; }
