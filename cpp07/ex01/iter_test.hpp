@@ -1,23 +1,23 @@
-#include "iter.hpp"
-
 #include <iostream>
 #include <string>
 
-template<typename T>
+#include "iter.hpp"
+
+template <typename T>
 void Print(T& a)
 {
     std::cout << "------" << __func__ << "------" << std::endl;
     std::cout << a << std::endl;
 }
 
-template<typename T>
+template <typename T>
 void Print(const T& a)
 {
     std::cout << "------ const " << __func__ << "------" << std::endl;
     std::cout << a << std::endl;
 }
 
-template<typename T>
+template <typename T>
 void toUpper(T& s)
 {
     std::cout << "------" << __func__ << "------" << std::endl;
@@ -25,13 +25,12 @@ void toUpper(T& s)
     size_t len = s.length();
     for (size_t i = 0; i < len; ++i)
     {
-        if ('a' <= s[i] && s[i] <= 'z')
-            s[i] = s[i] - 32;
+        if ('a' <= s[i] && s[i] <= 'z') s[i] = s[i] - 32;
     }
     std::cout << "After  : " << s << std::endl;
 }
 
-template<typename T>
+template <typename T>
 void toUpper(const T& s)
 {
     static_cast<void>(s);

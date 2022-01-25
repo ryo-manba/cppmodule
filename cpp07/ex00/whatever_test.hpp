@@ -1,10 +1,11 @@
 #ifndef WHATEVER_TEST_HPP
 #define WHATEVER_TEST_HPP
 
-#include "whatever.hpp"
 #include <iostream>
 
-template<typename T>
+#include "whatever.hpp"
+
+template <typename T>
 void testMinMax(const T& a, const T& b)
 {
     std::cout << "------" << __func__ << "------" << std::endl;
@@ -21,7 +22,7 @@ void testMinMax(const T& a, const T& b)
               << "address   : " << &maxi << std::endl;
 }
 
-template<typename T>
+template <typename T>
 void testSwap(T& a, T& b)
 {
     std::cout << "------" << __func__ << "------" << std::endl;

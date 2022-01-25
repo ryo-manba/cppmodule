@@ -1,9 +1,10 @@
-#include "whatever.hpp"
-#include "whatever_test.hpp"
 #include <iostream>
 
+#include "whatever.hpp"
+#include "whatever_test.hpp"
+
 #ifndef ORIGIN
- #define ORIGIN 0
+#define ORIGIN 0
 #endif
 
 void testSubject(void)
@@ -24,26 +25,25 @@ void testSubject(void)
 
 void test(void)
 {
-    int ia = 42;
-    int ib = 42;
-    long la = 42;
-    long lb = 42;
-    double da = 42.0;
-    double db = 42.0;
-    float fa = 42.0f;
-    float fb = 42.0f;
+    int ia         = 42;
+    int ib         = 42;
+    long la        = 42;
+    long lb        = 42;
+    double da      = 42.0;
+    double db      = 42.0;
+    float fa       = 42.0f;
+    float fb       = 42.0f;
     std::string sa = "42";
     std::string sb = "42";
 
-
-// If commented out, both sides will have the same value.
-//
+    // If commented out, both sides will have the same value.
+    //
     ia *= -1;
     la *= -1;
     da *= -1;
     fa *= -1;
     sa = "1";
-//
+    //
 
     testMinMax(ia, ib);
     testMinMax(la, lb);
