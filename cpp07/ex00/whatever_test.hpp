@@ -7,7 +7,7 @@
 template<typename T>
 void testMinMax(const T& a, const T& b)
 {
-    std::cout <<  __func__ << std::endl;
+    std::cout << "------" << __func__ << "------" << std::endl;
     std::cout << "a         : " << a << "\n"
               << "address   : " << &a << std::endl;
     std::cout << "b         : " << b << "\n"
@@ -24,7 +24,7 @@ void testMinMax(const T& a, const T& b)
 template<typename T>
 void testSwap(T& a, T& b)
 {
-    std::cout <<  __func__ << std::endl;
+    std::cout << "------" << __func__ << "------" << std::endl;
     std::cout << "a         : " << a << "\n"
               << "address   : " << &a << std::endl;
     std::cout << "b         : " << b << "\n"
