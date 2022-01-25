@@ -4,39 +4,37 @@
 #include <string>
 
 template<typename T>
-void print(const T& a)
+void Print(T& a)
 {
+    std::cout << "------" << __func__ << "------" << std::endl;
     std::cout << a << std::endl;
 }
 
 template<typename T>
-void putLower(const T& s)
+void Print(const T& a)
 {
-    std::string ans;
-    {
-        size_t  len = s.length();
-        for (size_t i = 0; i < len; ++i)
-        {
-            if ('A' <= s[i] && s[i] <= 'Z')
-                ans += (s[i] + 32);
-            else
-                ans += s[i];
-        }
-    std::cout << ans << std::endl;
-    }
+    std::cout << "------ const " << __func__ << "------" << std::endl;
+    std::cout << a << std::endl;
 }
 
 template<typename T>
-void putUpper(const T& s)
+void toUpper(T& s)
 {
-    std::string ans = "";
-    size_t  len = s.length();
+    std::cout << "------" << __func__ << "------" << std::endl;
+    std::cout << "Before : " << s << std::endl;
+    size_t len = s.length();
     for (size_t i = 0; i < len; ++i)
     {
         if ('a' <= s[i] && s[i] <= 'z')
-            ans += (s[i] - 32);
-        else
-            ans += s[i];
+            s[i] = s[i] - 32;
     }
-    std::cout << ans << std::endl;
+    std::cout << "After  : " << s << std::endl;
+}
+
+template<typename T>
+void toUpper(const T& s)
+{
+    static_cast<void>(s);
+    std::cout << "------ const " << __func__ << "------" << std::endl;
+    std::cout << "Constants cannot be changed." << std::endl;
 }
