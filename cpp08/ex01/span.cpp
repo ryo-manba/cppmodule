@@ -1,8 +1,9 @@
 #include "span.hpp"
-#include <limits>
+
 #include <algorithm>
 #include <exception>
 #include <iostream>
+#include <limits>
 
 const char* Span::kErrFullMsg = "Element is full";
 const char* Span::kErrLessMsg = "Less than two elements";
@@ -25,7 +26,7 @@ Span& Span::operator=(const Span& other)
     if (this != &other)
     {
         maxSize_ = other.getSize();
-        vec_  = other.getVec();
+        vec_     = other.getVec();
     }
     return *this;
 }
@@ -52,8 +53,7 @@ unsigned int Span::shortestSpan(void)
     for (unsigned int i = 0; i < sz - 1; ++i)
     {
         unsigned int diff = tmp[i + 1] - tmp[i];
-        if (diff < shortest)
-            shortest = diff;
+        if (diff < shortest) shortest = diff;
     }
     return shortest;
 }
@@ -70,6 +70,7 @@ unsigned int Span::longestSpan(void)
     return longest;
 }
 
+// debug
 void Span::Print(void) const
 {
     size_t sz = vec_.size();

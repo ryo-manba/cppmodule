@@ -1,18 +1,30 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
-
-#include <vector>
+#include <iostream>
 #include <string>
+#include <vector>
 
 class Span
 {
 public:
     Span(const unsigned int& N);
     Span(const Span& other);
-    Span &operator=(const Span &other);
+    Span& operator=(const Span& other);
     ~Span(void);
 
     void addNumber(int n);
+
+    template <class InputIte>
+    void addNumber(InputIte begin, InputIte end)
+    {
+        for (; begin != end; ++begin)
+        {
+            if (vec_.size() == maxSize_)
+                throw ElementFullException(kErrFullMsg);
+            vec_.push_back(*begin);
+        }
+    }
+
     unsigned int shortestSpan(void);
     unsigned int longestSpan(void);
 
@@ -34,6 +46,7 @@ private:
     public:
         ElementFullException(const char* msg);
         const char* what() const throw();
+
     private:
         const char* msg;
     };
@@ -42,6 +55,7 @@ private:
     public:
         LessThanTwoException(const char* msg);
         const char* what() const throw();
+
     private:
         const char* msg;
     };
