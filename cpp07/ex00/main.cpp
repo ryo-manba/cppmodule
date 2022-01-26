@@ -3,12 +3,9 @@
 #include "whatever.hpp"
 #include "whatever_test.hpp"
 
-#ifndef ORIGIN
-#define ORIGIN 0
-#endif
-
 void testSubject(void)
 {
+    std::cout << "-----" << __func__ << "-----" << std::endl;
     int a = 2;
     int b = 3;
     ::swap(a, b);
@@ -23,8 +20,9 @@ void testSubject(void)
     std::cout << "max( c, d ) = " << ::max(c, d) << std::endl;
 }
 
-void test(void)
+void testVariousVariables(void)
 {
+    std::cout << "-----" << __func__ << "-----" << std::endl;
     int ia         = 42;
     int ib         = 42;
     long la        = 42;
@@ -42,7 +40,7 @@ void test(void)
     la *= -1;
     da *= -1;
     fa *= -1;
-    sa = "1";
+    sa = "-42";
     //
 
     testMinMax(ia, ib);
@@ -62,9 +60,7 @@ void test(void)
 
 int main(void)
 {
-    if (ORIGIN)
-        testSubject();
-    else
-        test();
+    testSubject();
+    testVariousVariables();
     return 0;
 }

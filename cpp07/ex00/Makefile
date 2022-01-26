@@ -26,7 +26,4 @@ test: $(NAME)
 debug: CXXFLAGS += -g -fsanitize=address
 debug: re
 
-origin : CXXFLAGS += -DORIGIN=1
-origin : re
-
-.PHONY  : test debug origin
+.PHONY  : test debug

@@ -9,8 +9,8 @@ void testVariable(void)
     std::string lowers[] = {"hello", "world", "tokyo"};
     int array[]          = {1, 2, 3, 4, 5};
 
-    ::iter(lowers, 2, toUpper);
-    ::iter(array, 3, Print);
+    iter(lowers, 2, toUpper);
+    iter(array, 3, Print);
 }
 
 void testConst(void)
@@ -19,8 +19,8 @@ void testConst(void)
     const std::string lowers[] = {"hello", "world", "tokyo"};
     const int array[]          = {1, 2, 3, 4, 5};
 
-    ::iter(lowers, 2, toUpper);
-    ::iter(array, 3, Print);
+    iter(lowers, 2, toUpper);
+    iter(array, 3, Print);
 }
 
 int main(void)
