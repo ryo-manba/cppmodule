@@ -1,5 +1,13 @@
-#include "mutantstack.hpp"
 #include <iostream>
+#include <list>
+#include <stack>
+#include "mutantstack.hpp"
+
+#ifdef LIST
+# define push push_back
+# define pop pop_back
+# define MutantStack std::list
+#endif
 
 int testSubject(void)
 {
@@ -7,7 +15,11 @@ int testSubject(void)
     MutantStack<int> mstack;
     mstack.push(5);
     mstack.push(17);
-    std::cout << mstack.top() << std::endl;
+    #ifndef LIST
+        std::cout << mstack.top() << std::endl;
+    #else
+        std::cout << "std::list does not have a top()" << std::endl;
+    #endif
     mstack.pop();
     std::cout << mstack.size() << std::endl;
     mstack.push(3);
@@ -24,7 +36,11 @@ int testSubject(void)
         std::cout << *it << std::endl;
         ++it;
     }
-    std::stack<int> s(mstack);
+    #ifndef LIST
+        std::stack<int> s(mstack);
+    #else
+        std::list<int> s(mstack);
+    #endif
     return 0;
 }
 
@@ -38,8 +54,8 @@ void testIterator(void)
     mstack.push(4);
     mstack.push(5);
 
-    MutantStack<int>::iterator it  = mstack.begin();
-    MutantStack<int>::iterator ite = mstack.end();
+    MutantStack<int>::iterator it              = mstack.begin();
+    MutantStack<int>::iterator ite             = mstack.end();
     MutantStack<int>::reverse_iterator rev_it  = mstack.rbegin();
     MutantStack<int>::reverse_iterator rev_ite = mstack.rend();
 
@@ -69,8 +85,8 @@ void testConstIterator(void)
     mstack.push(5);
 
     const MutantStack<int> constMstack(mstack);
-    MutantStack<int>::const_iterator it  = constMstack.begin();
-    MutantStack<int>::const_iterator ite = constMstack.end();
+    MutantStack<int>::const_iterator it              = constMstack.begin();
+    MutantStack<int>::const_iterator ite             = constMstack.end();
     MutantStack<int>::const_reverse_iterator rev_it  = constMstack.rbegin();
     MutantStack<int>::const_reverse_iterator rev_ite = constMstack.rend();
 
@@ -91,8 +107,12 @@ void testConstIterator(void)
 
 int main(void)
 {
+    #ifdef LIST
+        std::cout << "[std::list]" << std::endl;
+    #else
+        std::cout << "[MutantStack]" << std::endl;
+    #endif
     testSubject();
     testIterator();
     testConstIterator();
-    return (0);
 }

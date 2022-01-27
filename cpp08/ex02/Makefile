@@ -26,6 +26,9 @@ re: fclean all
 test: $(NAME)
 	./a.out
 
-.PHONY: debug
+list : CXXFLAGS += -DLIST=1
+list : re test
+
+.PHONY: debug list
 debug: CXXFLAGS += -g -fsanitize=address
 debug: re
