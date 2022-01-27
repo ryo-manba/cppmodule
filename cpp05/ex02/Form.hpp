@@ -38,7 +38,6 @@ public:
         const char *msg;
     };
 
-public:
     Form(void);
     Form(const Form &other);
     Form(const std::string &name, const bool &isSigned,

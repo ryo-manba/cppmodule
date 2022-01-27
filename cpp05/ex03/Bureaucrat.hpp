@@ -10,6 +10,7 @@ class Form;
 
 class Bureaucrat
 {
+public:
     class GradeTooHighException : public std::exception
     {
     public:
@@ -29,7 +30,6 @@ class Bureaucrat
         const char *msg;
     };
 
-public:
     Bureaucrat(void);
     Bureaucrat(const Bureaucrat &other);
     Bureaucrat(const std::string &name, const int &grade);
