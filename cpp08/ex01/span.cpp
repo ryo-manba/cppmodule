@@ -8,6 +8,13 @@
 const char* Span::kErrFullMsg = "Element is full";
 const char* Span::kErrLessMsg = "Less than two elements";
 
+// exception
+Span::ElementFullException::ElementFullException(const char* msg) : msg(msg) {}
+const char* Span::ElementFullException::what() const throw() { return msg; }
+
+Span::LessThanTwoException::LessThanTwoException(const char* msg) : msg(msg) {}
+const char* Span::LessThanTwoException::what() const throw() { return msg; }
+
 Span::Span(void) : maxSize_(0) {}
 
 Span::Span(const unsigned int& N) : maxSize_(N) {}
@@ -79,10 +86,3 @@ void Span::Print(void) const
 // getter
 const unsigned int& Span::getSize(void) const { return maxSize_; }
 const std::vector<int>& Span::getVec(void) const { return vec_; }
-
-// exception
-Span::ElementFullException::ElementFullException(const char* msg) : msg(msg) {}
-const char* Span::ElementFullException::what() const throw() { return msg; }
-
-Span::LessThanTwoException::LessThanTwoException(const char* msg) : msg(msg) {}
-const char* Span::LessThanTwoException::what() const throw() { return msg; }

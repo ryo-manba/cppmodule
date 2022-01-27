@@ -8,6 +8,25 @@
 class Span
 {
 public:
+    class ElementFullException : public std::exception
+    {
+    public:
+        ElementFullException(const char* msg);
+        const char* what() const throw();
+
+    private:
+        const char* msg;
+    };
+    class LessThanTwoException : public std::exception
+    {
+    public:
+        LessThanTwoException(const char* msg);
+        const char* what() const throw();
+
+    private:
+        const char* msg;
+    };
+
     Span(const unsigned int& N);
     Span(const Span& other);
     Span& operator=(const Span& other);
@@ -41,24 +60,5 @@ private:
 
     unsigned int maxSize_;
     std::vector<int> vec_;
-
-    class ElementFullException : public std::exception
-    {
-    public:
-        ElementFullException(const char* msg);
-        const char* what() const throw();
-
-    private:
-        const char* msg;
-    };
-    class LessThanTwoException : public std::exception
-    {
-    public:
-        LessThanTwoException(const char* msg);
-        const char* what() const throw();
-
-    private:
-        const char* msg;
-    };
 };
 #endif
