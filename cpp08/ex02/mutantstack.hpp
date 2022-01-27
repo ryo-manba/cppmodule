@@ -12,6 +12,15 @@ public:
     typedef typename std::stack<T>::container_type::reverse_iterator reverse_iterator;
     typedef typename std::stack<T>::container_type::const_reverse_iterator const_reverse_iterator;
 
+    MutantStack() : std::stack<T>() {}
+    MutantStack(const MutantStack<T>& ms) : std::stack<T>(ms) {}
+    MutantStack<T>& operator=(const MutantStack<T>& other)
+    {
+        this->c = other.c;
+        return *this;
+    }
+    ~MutantStack() {}
+
     iterator begin() { return this->c.begin(); }
     const_iterator begin() const { return this->c.begin(); }
 
