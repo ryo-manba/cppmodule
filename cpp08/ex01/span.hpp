@@ -1,6 +1,7 @@
 #ifndef SPAN_HPP
 #define SPAN_HPP
 #include <iostream>
+#include <exception>
 #include <string>
 #include <vector>
 
@@ -25,8 +26,8 @@ public:
         }
     }
 
-    unsigned int shortestSpan(void);
-    unsigned int longestSpan(void);
+    unsigned int shortestSpan(void) const;
+    unsigned int longestSpan(void) const;
 
     const unsigned int& getSize(void) const;
     const std::vector<int>& getVec(void) const;
